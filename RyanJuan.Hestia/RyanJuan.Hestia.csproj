@@ -1,7 +1,32 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>netstandard2.0;netcoreapp2.1</TargetFrameworks>
+    <LangVersion>latest</LangVersion>
+    <Configurations>Debug;Release;Release-zh-Hant</Configurations>
+    <Version>1.0.0-alpha00712</Version>
+    <Authors>RyanJuan</Authors>
   </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningsAsErrors />
+    <DocumentationFile>D:\ryan\Hestia\RyanJuan.Hestia\RyanJuan.Hestia.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release-zh-Hant|AnyCPU'">
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningsAsErrors />
+    <DocumentationFile>D:\ryan\Hestia\RyanJuan.Hestia\RyanJuan.Hestia.xml</DocumentationFile>
+    <DefineConstants>TRACE;ZH_HANT</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>D:\ryan\Hestia\RyanJuan.Hestia\RyanJuan.Hestia.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="lib\netstandard2.0\zh-Hant\" />
+  </ItemGroup>
 
 </Project>
