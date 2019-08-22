@@ -52,26 +52,24 @@ namespace RyanJuan.Hestia
             {
                 throw Error.ArgumentNull(nameof(source));
             }
-            using (var iterator = source.GetEnumerator())
+            using var iterator = source.GetEnumerator();
+            if (!iterator.MoveNext())
             {
-                if (!iterator.MoveNext())
-                {
-                    return true;
-                }
-                if (comparer is null)
-                {
-                    comparer = EqualityComparer<TSource>.Default;
-                }
-                var value = iterator.Current;
-                while (iterator.MoveNext())
-                {
-                    if (!comparer.Equals(value, iterator.Current))
-                    {
-                        return false;
-                    }
-                }
                 return true;
             }
+            if (comparer is null)
+            {
+                comparer = EqualityComparer<TSource>.Default;
+            }
+            var value = iterator.Current;
+            while (iterator.MoveNext())
+            {
+                if (!comparer.Equals(value, iterator.Current))
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
 #if ZH_HANT

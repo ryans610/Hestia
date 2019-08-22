@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;netcoreapp2.1</TargetFrameworks>
-    <LangVersion>latest</LangVersion>
+    <TargetFrameworks>netstandard2.0;netcoreapp2.1;net40</TargetFrameworks>
+    <LangVersion>8.0</LangVersion>
     <Configurations>Debug;Release;Release-zh-Hant</Configurations>
     <Version>1.0.0-alpha00712</Version>
     <Authors>RyanJuan</Authors>
