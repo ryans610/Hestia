@@ -7,6 +7,7 @@ namespace RyanJuan.Hestia
 {
     public static partial class HestiaCollections
     {
+#if !NET40
 #if ZH_HANT
         /// <summary>
         /// 將指定的 <see cref="IDictionary{TKey, TValue}"/> 包裝為
@@ -61,5 +62,6 @@ namespace RyanJuan.Hestia
             }
             return new ReadOnlyDictionary<TKey, TValue>(dictionary);
         }
+#endif
     }
 }

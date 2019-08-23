@@ -57,11 +57,18 @@ namespace RyanJuan.Hestia
             {
                 throw new ArgumentNullException(nameof(function));
             }
-            Task.Run(function).ContinueWith(
+            var task = new Task<Task>(function);
+            //Task.Run(function).ContinueWith(
+            //    exceptionHandler is null ?
+            //        s_ignoreExceptionHandler :
+            //        t => exceptionHandler(t.Exception.GetBaseException()),
+            //    TaskContinuationOptions.ExecuteSynchronously | TaskContinuationOptions.OnlyOnFaulted);
+            task.ContinueWith(
                 exceptionHandler is null ?
                     s_ignoreExceptionHandler :
                     t => exceptionHandler(t.Exception.GetBaseException()),
                 TaskContinuationOptions.ExecuteSynchronously | TaskContinuationOptions.OnlyOnFaulted);
+            task.Start();
         }
 
         /// <summary>
