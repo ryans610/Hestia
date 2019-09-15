@@ -9,13 +9,13 @@ namespace RyanJuan.Hestia
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="str"></param>
+        /// <param name="c"></param>
         /// <returns></returns>
 #endif
-        public static bool IsNullOrEmpty(
-            this string str)
+        public static bool IsWhiteSpace(
+            this char c)
         {
-            return string.IsNullOrEmpty(str);
+            return char.IsWhiteSpace(c);
         }
 
 #if ZH_HANT
@@ -23,13 +23,13 @@ namespace RyanJuan.Hestia
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="str"></param>
+        /// <param name="c"></param>
         /// <returns></returns>
 #endif
-        public static bool IsNotNullOrEmpty(
-            this string str)
+        public static bool IsNotWhiteSpace(
+            this char c)
         {
-            return !string.IsNullOrEmpty(str);
+            return !char.IsWhiteSpace(c);
         }
     }
 }

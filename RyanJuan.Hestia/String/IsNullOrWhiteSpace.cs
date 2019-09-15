@@ -2,20 +2,20 @@
 
 namespace RyanJuan.Hestia
 {
-    public static partial class Hestia
+    public static partial class HestiaString
     {
 #if ZH_HANT
 #else
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="str"></param>
+        /// <param name="value"></param>
         /// <returns></returns>
 #endif
         public static bool IsNullOrWhiteSpace(
-            this string str)
+            this string value)
         {
-            return string.IsNullOrWhiteSpace(str);
+            return string.IsNullOrWhiteSpace(value);
         }
 
 #if ZH_HANT
@@ -23,13 +23,13 @@ namespace RyanJuan.Hestia
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="str"></param>
+        /// <param name="value"></param>
         /// <returns></returns>
 #endif
         public static bool IsNotNullOrWhiteSpace(
-            this string str)
+            this string value)
         {
-            return !string.IsNullOrWhiteSpace(str);
+            return !string.IsNullOrWhiteSpace(value);
         }
     }
 }
