@@ -12,7 +12,7 @@ namespace RyanJuan.Hestia
         public static bool NotContains<TSource>(
             this IEnumerable<TSource> source,
             TSource value,
-            IEqualityComparer<TSource> comparer)
+            IEqualityComparer<TSource>? comparer)
         {
             return !source.Contains(value, comparer);
         }
@@ -24,7 +24,7 @@ namespace RyanJuan.Hestia
             this IEnumerable<TSource> source,
             TSource value)
         {
-            return source.NotContains(value, null);
+            return !source.Contains(value);
         }
 
 #if ZH_HANT
@@ -34,7 +34,7 @@ namespace RyanJuan.Hestia
             this ICollection<TSource> source,
             TSource value)
         {
-            return source.Contains(value);
+            return !source.Contains(value);
         }
     }
 }

@@ -17,6 +17,14 @@ namespace RyanJuan.Hestia
             this string value,
             int length)
         {
+            Error.ThrowIfArgumentNull(nameof(value), value);
+            if (length <= 0)
+            {
+                throw Error.ArgumentOutOfRange(
+                    nameof(length),
+                    $"{nameof(length)} is less than or equals to 0.",
+                    length);
+            }
             return value.Substring(0, length);
         }
     }

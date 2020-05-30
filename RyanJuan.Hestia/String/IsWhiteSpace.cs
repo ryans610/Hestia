@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace RyanJuan.Hestia
 {
@@ -13,7 +14,10 @@ namespace RyanJuan.Hestia
         /// <returns></returns>
 #endif
         public static bool IsWhiteSpace(
-            this string value)
+#if NETCOREAPP3_0 || NETSTANDARD2_1
+            [NotNullWhen(true)]
+#endif
+            this string? value)
         {
             if (value == null)
             {
@@ -38,7 +42,10 @@ namespace RyanJuan.Hestia
         /// <returns></returns>
 #endif
         public static bool IsNotWhiteSpace(
-            this string value)
+#if NETCOREAPP3_0 || NETSTANDARD2_1
+            [NotNullWhen(false)]
+#endif
+            this string? value)
         {
             if (value == null)
             {
@@ -46,12 +53,12 @@ namespace RyanJuan.Hestia
             }
             for (int i = 0; i < value.Length; i++)
             {
-                if (!char.IsWhiteSpace(value[i]))
+                if (char.IsWhiteSpace(value[i]))
                 {
-                    return true;
+                    return false;
                 }
             }
-            return false;
+            return true;
         }
     }
 }

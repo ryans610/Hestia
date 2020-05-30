@@ -20,10 +20,7 @@ namespace RyanJuan.Hestia
             this IEnumerable<TSource> source,
             int capacity)
         {
-            if (source is null)
-            {
-                throw Error.ArgumentNull(nameof(source));
-            }
+            Error.ThrowIfArgumentNull(nameof(source), source);
             if (capacity < 0)
             {
                 throw Error.ArgumentOutOfRange(

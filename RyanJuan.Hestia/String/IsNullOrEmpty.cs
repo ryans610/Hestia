@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace RyanJuan.Hestia
 {
@@ -13,7 +14,10 @@ namespace RyanJuan.Hestia
         /// <returns></returns>
 #endif
         public static bool IsNullOrEmpty(
-            this string value)
+#if NETCOREAPP3_0 || NETSTANDARD2_1
+            [NotNullWhen(false)]
+#endif
+            this string? value)
         {
             return string.IsNullOrEmpty(value);
         }
@@ -27,7 +31,10 @@ namespace RyanJuan.Hestia
         /// <returns></returns>
 #endif
         public static bool IsNotNullOrEmpty(
-            this string value)
+#if NETCOREAPP3_0 || NETSTANDARD2_1
+            [NotNullWhen(true)]
+#endif
+            this string? value)
         {
             return !string.IsNullOrEmpty(value);
         }

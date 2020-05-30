@@ -16,8 +16,8 @@ namespace RyanJuan.Hestia
 #endif
         public static string ToStringOrEmpty(
             this DateTime? datetime,
-            string format,
-            IFormatProvider provider)
+            string? format,
+            IFormatProvider? provider)
         {
             if (datetime.HasValue)
             {

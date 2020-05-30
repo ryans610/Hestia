@@ -54,15 +54,10 @@ namespace RyanJuan.Hestia
         public static void AddRange<TKey, TValue>(
             this IDictionary<TKey, TValue> dictionary,
             IEnumerable<KeyValuePair<TKey, TValue>> values)
+            where TKey : notnull
         {
-            if (dictionary is null)
-            {
-                throw Error.ArgumentNull(nameof(dictionary));
-            }
-            if (values is null)
-            {
-                throw Error.ArgumentNull(nameof(values));
-            }
+            Error.ThrowIfArgumentNull(nameof(dictionary), dictionary);
+            Error.ThrowIfArgumentNull(nameof(values), values);
             foreach (var pair in values)
             {
                 dictionary.Add(pair);
@@ -118,19 +113,11 @@ namespace RyanJuan.Hestia
             this IDictionary<TKey, TSource> dictionary,
             IEnumerable<TSource> source,
             Func<TSource, TKey> keySelector)
+            where TKey : notnull
         {
-            if (dictionary is null)
-            {
-                throw Error.ArgumentNull(nameof(dictionary));
-            }
-            if (source is null)
-            {
-                throw Error.ArgumentNull(nameof(source));
-            }
-            if (keySelector is null)
-            {
-                throw Error.ArgumentNull(nameof(keySelector));
-            }
+            Error.ThrowIfArgumentNull(nameof(dictionary), dictionary);
+            Error.ThrowIfArgumentNull(nameof(source), source);
+            Error.ThrowIfArgumentNull(nameof(keySelector), keySelector);
             foreach (var value in source)
             {
                 dictionary.Add(keySelector(value), value);
@@ -199,23 +186,12 @@ namespace RyanJuan.Hestia
             IEnumerable<TSource> source,
             Func<TSource, TKey> keySelector,
             Func<TSource, TElement> elementSelector)
+            where TKey : notnull
         {
-            if (dictionary is null)
-            {
-                throw Error.ArgumentNull(nameof(dictionary));
-            }
-            if (source is null)
-            {
-                throw Error.ArgumentNull(nameof(source));
-            }
-            if (keySelector is null)
-            {
-                throw Error.ArgumentNull(nameof(keySelector));
-            }
-            if (elementSelector is null)
-            {
-                throw Error.ArgumentNull(nameof(elementSelector));
-            }
+            Error.ThrowIfArgumentNull(nameof(dictionary), dictionary);
+            Error.ThrowIfArgumentNull(nameof(source), source);
+            Error.ThrowIfArgumentNull(nameof(keySelector), keySelector);
+            Error.ThrowIfArgumentNull(nameof(elementSelector), elementSelector);
             foreach (var value in source)
             {
                 dictionary.Add(keySelector(value), elementSelector(value));

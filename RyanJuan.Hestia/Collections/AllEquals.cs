@@ -46,25 +46,19 @@ namespace RyanJuan.Hestia
 #endif
         public static bool AllEquals<TSource>(
             this IEnumerable<TSource> source,
-            IEqualityComparer<TSource> comparer)
+            IEqualityComparer<TSource>? comparer)
         {
-            if (source is null)
-            {
-                throw Error.ArgumentNull(nameof(source));
-            }
+            Error.ThrowIfArgumentNull(nameof(source), source);
             using var iterator = source.GetEnumerator();
             if (!iterator.MoveNext())
             {
                 return true;
             }
-            if (comparer is null)
-            {
-                comparer = EqualityComparer<TSource>.Default;
-            }
-            var value = iterator.Current;
+            comparer ??= EqualityComparer<TSource>.Default;
+            var firstValue = iterator.Current;
             while (iterator.MoveNext())
             {
-                if (!comparer.Equals(value, iterator.Current))
+                if (!comparer.Equals(firstValue, iterator.Current))
                 {
                     return false;
                 }

@@ -18,10 +18,7 @@ namespace RyanJuan.Hestia
             this string value,
             int byteLength)
         {
-            if (value == null)
-            {
-                throw Error.ArgumentNull(nameof(value));
-            }
+            Error.ThrowIfArgumentNull(nameof(value), value);
             if (byteLength < 0)
             {
                 throw Error.ArgumentOutOfRange(
@@ -42,7 +39,7 @@ namespace RyanJuan.Hestia
             if ((bytes[edgeIndex] & 0b_1000_0000) != 0b_0000_0000)
             {
                 while (edgeIndex > 0 &&
-                    (bytes[edgeIndex] & 0b_1100_0000) != 0b_1100_0000)
+                       (bytes[edgeIndex] & 0b_1100_0000) != 0b_1100_0000)
                 {
                     edgeIndex -= 1;
                 }

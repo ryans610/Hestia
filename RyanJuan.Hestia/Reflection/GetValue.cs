@@ -31,27 +31,18 @@ namespace RyanJuan.Hestia
         /// <paramref name="memberInfo"/> or <paramref name="obj"/> is <see langword="null"/>.
         /// </exception>
 #endif
-        public static object GetValue(
+        public static object? GetValue(
             this MemberInfo memberInfo,
             object obj)
         {
-            if (memberInfo is null)
+            Error.ThrowIfArgumentNull(nameof(memberInfo), memberInfo);
+            Error.ThrowIfArgumentNull(nameof(obj), obj);
+            return memberInfo.MemberType switch
             {
-                throw Error.ArgumentNull(nameof(memberInfo));
-            }
-            if (obj is null)
-            {
-                throw Error.ArgumentNull(nameof(obj));
-            }
-            switch (memberInfo.MemberType)
-            {
-                case MemberTypes.Field:
-                    return (memberInfo as FieldInfo)?.GetValue(obj);
-                case MemberTypes.Property:
-                    return (memberInfo as PropertyInfo)?.GetValue(obj);
-                default:
-                    return null;
-            }
+                MemberTypes.Field => (memberInfo as FieldInfo)?.GetValue(obj),
+                MemberTypes.Property => (memberInfo as PropertyInfo)?.GetValue(obj),
+                _ => null,
+            };
         }
     }
 }

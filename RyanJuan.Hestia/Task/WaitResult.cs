@@ -5,6 +5,7 @@ namespace RyanJuan.Hestia
 {
     public static partial class HestiaTask
     {
+#if !NET40
 #if ZH_HANT
 #else
         /// <summary>
@@ -17,7 +18,9 @@ namespace RyanJuan.Hestia
         public static TResult WaitResult<TResult>(
             this Task<TResult> task)
         {
+            Error.ThrowIfArgumentNull(nameof(task), task);
             return task.GetAwaiter().GetResult();
         }
+#endif
     }
 }

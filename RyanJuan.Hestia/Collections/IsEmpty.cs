@@ -19,22 +19,23 @@ namespace RyanJuan.Hestia
         public static bool IsEmpty<TSource>(
             this IEnumerable<TSource> source)
         {
-            if (source is null)
-            {
-                throw Error.ArgumentNull(nameof(source));
-            }
+            Error.ThrowIfArgumentNull(nameof(source), source);
             if (source is ICollection<TSource> collectionT)
             {
                 return collectionT.Count == 0;
             }
+#if !NET40
+            if (source is IReadOnlyCollection<TSource> readOnlyCollectionT)
+            {
+                return readOnlyCollectionT.Count == 0;
+            }
+#endif
             if (source is ICollection collection)
             {
                 return collection.Count == 0;
             }
-            using (var iterator = source.GetEnumerator())
-            {
-                return !iterator.MoveNext();
-            }
+            using var iterator = source.GetEnumerator();
+            return !iterator.MoveNext();
         }
     }
 }

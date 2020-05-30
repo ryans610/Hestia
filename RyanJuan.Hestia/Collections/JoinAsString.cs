@@ -24,7 +24,7 @@ namespace RyanJuan.Hestia
             this IEnumerable<TSource> source,
             char separator)
         {
-#if NETCOREAPP2_0
+#if NETCOREAPP3_0 || NETCOREAPP2_1 || NETSTANDARD2_1
             return string.Join(separator, source);
 #else
             return source.JoinAsString(separator.ToString());

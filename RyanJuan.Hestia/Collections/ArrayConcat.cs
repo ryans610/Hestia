@@ -40,10 +40,7 @@ namespace RyanJuan.Hestia
             this TSource[] first,
             params TSource[][] others)
         {
-            if (first is null)
-            {
-                throw Error.ArgumentNull(nameof(first));
-            }
+            Error.ThrowIfArgumentNull(nameof(first), first);
             if (others is null ||
                 others.Any(x => x is null))
             {

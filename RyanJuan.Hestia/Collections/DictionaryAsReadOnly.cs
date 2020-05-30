@@ -55,11 +55,9 @@ namespace RyanJuan.Hestia
 #endif
         public static ReadOnlyDictionary<TKey, TValue> AsReadOnly<TKey, TValue>(
             this IDictionary<TKey, TValue> dictionary)
+            where TKey : notnull
         {
-            if (dictionary is null)
-            {
-                throw Error.ArgumentNull(nameof(dictionary));
-            }
+            Error.ThrowIfArgumentNull(nameof(dictionary), dictionary);
             return new ReadOnlyDictionary<TKey, TValue>(dictionary);
         }
 #endif

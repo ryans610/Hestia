@@ -33,10 +33,7 @@ namespace RyanJuan.Hestia
         public static void Clear<TSource>(
             this ConcurrentBag<TSource> source)
         {
-            if (source is null)
-            {
-                throw Error.ArgumentNull(nameof(source));
-            }
+            Error.ThrowIfArgumentNull(nameof(source), source);
             while (source.TryTake(out _)) { }
         }
     }

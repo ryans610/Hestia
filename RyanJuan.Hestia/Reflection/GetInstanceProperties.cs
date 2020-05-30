@@ -5,6 +5,12 @@ namespace RyanJuan.Hestia
 {
     public static partial class HestiaReflection
     {
+        internal const BindingFlags DefaultInstanceBindingAttr =
+            BindingFlags.DeclaredOnly |
+            BindingFlags.Instance |
+            BindingFlags.Public |
+            BindingFlags.NonPublic;
+
 #if ZH_HANT
         /// <summary>
         /// 取得指定的 <see cref="Type"/> 的公開和非公開、非靜態宣告屬性。
@@ -33,15 +39,8 @@ namespace RyanJuan.Hestia
         public static PropertyInfo[] GetInstanceProperties(
             this Type type)
         {
-            if (type is null)
-            {
-                throw Error.ArgumentNull(nameof(type));
-            }
-            return type.GetProperties(
-                BindingFlags.DeclaredOnly |
-                BindingFlags.Instance |
-                BindingFlags.Public |
-                BindingFlags.NonPublic);
+            Error.ThrowIfArgumentNull(nameof(type), type);
+            return type.GetProperties(DefaultInstanceBindingAttr);
         }
     }
 }

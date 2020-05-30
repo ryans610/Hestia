@@ -46,37 +46,29 @@ namespace RyanJuan.Hestia
 #endif
         public static bool AllDifference<TSource>(
             this IEnumerable<TSource> source,
-            IEqualityComparer<TSource> comparer)
+            IEqualityComparer<TSource>? comparer)
         {
-            if (source is null)
+            Error.ThrowIfArgumentNull(nameof(source), source);
+            using var iterator = source.GetEnumerator();
+            if (!iterator.MoveNext())
             {
-                throw Error.ArgumentNull(nameof(source));
-            }
-            using (var iterator = source.GetEnumerator())
-            {
-                if (!iterator.MoveNext())
-                {
-                    return true;
-                }
-                if (comparer is null)
-                {
-                    comparer = EqualityComparer<TSource>.Default;
-                }
-                var hashSet = new HashSet<TSource>(comparer)
-                {
-                    iterator.Current,
-                };
-                while (iterator.MoveNext())
-                {
-                    var current = iterator.Current;
-                    if (hashSet.Contains(current))
-                    {
-                        return false;
-                    }
-                    hashSet.Add(current);
-                }
                 return true;
             }
+            comparer ??= EqualityComparer<TSource>.Default;
+            var hashSet = new HashSet<TSource>(comparer)
+            {
+                iterator.Current,
+            };
+            while (iterator.MoveNext())
+            {
+                var current = iterator.Current;
+                if (hashSet.Contains(current))
+                {
+                    return false;
+                }
+                hashSet.Add(current);
+            }
+            return true;
         }
 
 #if ZH_HANT

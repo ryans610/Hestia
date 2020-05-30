@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace RyanJuan.Hestia
 {
@@ -19,7 +19,10 @@ namespace RyanJuan.Hestia
         public static ReadOnlyCollection<TSource> ToReadOnlyCollection<TSource>(
             this IEnumerable<TSource> source)
         {
-            return source is List<TSource> list ? list.AsReadOnly() : source.ToList().AsReadOnly();
+            Error.ThrowIfArgumentNull(nameof(source), source);
+            return source is List<TSource> list ?
+                list.AsReadOnly() :
+                source.ToList().AsReadOnly();
         }
     }
 }

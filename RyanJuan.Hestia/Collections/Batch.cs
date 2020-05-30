@@ -20,10 +20,7 @@ namespace RyanJuan.Hestia
             this IEnumerable<TSource> source,
             int batchSize)
         {
-            if (source is null)
-            {
-                throw Error.ArgumentNull(nameof(source));
-            }
+            Error.ThrowIfArgumentNull(nameof(source), source);
             if (batchSize <= 0)
             {
                 throw Error.ArgumentOutOfRange(
@@ -31,29 +28,42 @@ namespace RyanJuan.Hestia
                     $"{nameof(batchSize)} is less than or equals to 0.",
                     batchSize);
             }
-            TSource[] buffer = null;
-            int count = 0;
-            using (var iterator = source.GetEnumerator())
+#if NETCOREAPP3_0 || NETSTANDARD2_1
+            if (source is TSource[] array)
             {
-                while (iterator.MoveNext())
+                int start = 0;
+                int end = 0;
+                while (start < array.Length)
                 {
-                    if (buffer is null)
+                    end = start + batchSize;
+                    if (end > array.Length)
                     {
-                        buffer = new TSource[batchSize];
+                        end = array.Length;
                     }
-                    buffer[count] = iterator.Current;
-                    count++;
-                    if (count == batchSize)
-                    {
-                        yield return buffer.Skip(0);
-                        count = 0;
-                        buffer = null;
-                    }
+                    yield return array[start..end].Skip(0);
+                    start += batchSize;
                 }
-                if (count > 0)
+                yield break;
+            }
+#endif
+            TSource[]? buffer = null;
+            int count = 0;
+            using var iterator = source.GetEnumerator();
+            while (iterator.MoveNext())
+            {
+                buffer ??= new TSource[batchSize];
+                buffer[count] = iterator.Current;
+                count += 1;
+                if (count == batchSize)
                 {
-                    yield return buffer.Take(count);
+                    yield return buffer.Skip(0);
+                    count = 0;
+                    buffer = null;
                 }
+            }
+            if (count > 0)
+            {
+                yield return buffer.Take(count);
             }
         }
     }

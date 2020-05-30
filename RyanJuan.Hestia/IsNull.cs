@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace RyanJuan.Hestia
 {
@@ -14,6 +15,9 @@ namespace RyanJuan.Hestia
         /// <returns></returns>
 #endif
         public static bool IsNull<T>(
+#if NETCOREAPP3_0 || NETSTANDARD2_1
+            [NotNullWhen(false)]
+#endif
             this T obj)
             where T : class
         {
@@ -30,6 +34,9 @@ namespace RyanJuan.Hestia
         /// <returns></returns>
 #endif
         public static bool IsNotNull<T>(
+#if NETCOREAPP3_0 || NETSTANDARD2_1
+            [NotNullWhen(true)]
+#endif
             this T obj)
             where T : class
         {
