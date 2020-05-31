@@ -25,9 +25,12 @@ namespace RyanJuan.Hestia
             {
                 await Task.Run(action);
             }
-            catch (Exception ex) when (exceptionHandler is { })
+            catch (Exception ex)
             {
-                exceptionHandler(ex);
+                if (exceptionHandler is { })
+                {
+                    exceptionHandler(ex);
+                }
             }
         }
 
@@ -45,9 +48,12 @@ namespace RyanJuan.Hestia
             {
                 await function.Invoke();
             }
-            catch (Exception ex) when (exceptionHandler is { })
+            catch (Exception ex)
             {
-                exceptionHandler(ex);
+                if (exceptionHandler is { })
+                {
+                    exceptionHandler(ex);
+                }
             }
         }
 
@@ -66,9 +72,12 @@ namespace RyanJuan.Hestia
             {
                 await function.Invoke();
             }
-            catch (Exception ex) when (exceptionHandler is { })
+            catch (Exception ex)
             {
-                exceptionHandler(ex);
+                if (exceptionHandler is { })
+                {
+                    exceptionHandler(ex);
+                }
             }
         }
 
@@ -83,9 +92,12 @@ namespace RyanJuan.Hestia
                 {
                     action(item);
                 }
-                catch (Exception exception) when (exceptionHandler is { })
+                catch (Exception ex)
                 {
-                    exceptionHandler(exception);
+                    if (exceptionHandler is { })
+                    {
+                        exceptionHandler(ex);
+                    }
                 }
             });
         }

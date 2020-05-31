@@ -1,17 +1,16 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 
 namespace RyanJuan.Hestia
 {
     public static partial class ReflectionCenter
     {
-        private static readonly ConcurrentDictionary<TypeStringTuple, PropertyInfo?> s_cachedPropertyInfoByName =
-            new ConcurrentDictionary<TypeStringTuple, PropertyInfo?>();
+        private static readonly ConcurrentDictionary<TypeStringTuple, FieldInfo?> s_cachedFieldInfoByName =
+            new ConcurrentDictionary<TypeStringTuple, FieldInfo?>();
 
-        public static PropertyInfo? GetProperty(
+        public static FieldInfo? GetField(
             Type type,
             string name)
         {
@@ -23,17 +22,17 @@ namespace RyanJuan.Hestia
                     nameof(name),
                     $"{nameof(name)} can not be empty.");
             }
-            if (s_cachedPropertyInfoByName.TryGetValue(
+            if (s_cachedFieldInfoByName.TryGetValue(
                     new TypeStringTuple(type, name),
                     out var value))
             {
                 return value;
             }
-            var property = type.GetProperty(name, GetAllBindingAttr);
-            s_cachedPropertyInfoByName.TryAdd(
+            var field = type.GetField(name, GetAllBindingAttr);
+            s_cachedFieldInfoByName.TryAdd(
                 new TypeStringTuple(type, name),
-                property);
-            return property;
+                field);
+            return field;
         }
     }
 }

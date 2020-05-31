@@ -11,11 +11,6 @@ namespace RyanJuan.Hestia
     /// </summary>
     public static partial class ReflectionCenter
     {
-        private const BindingFlags SystemDefaultBindingAttr =
-            BindingFlags.Instance |
-            BindingFlags.Static |
-            BindingFlags.Public;
-
         private static readonly ConcurrentDictionary<TypeBindingFlagsTuple, PropertyInfo[]> s_cachedPropertyInfoArrayByBindingFlags =
             new ConcurrentDictionary<TypeBindingFlagsTuple, PropertyInfo[]>();
 
@@ -47,35 +42,6 @@ namespace RyanJuan.Hestia
             Type type)
         {
             return GetProperties(type, HestiaReflection.DefaultInstanceBindingAttr);
-        }
-
-        private readonly struct TypeBindingFlagsTuple : IEquatable<TypeBindingFlagsTuple>
-        {
-            public TypeBindingFlagsTuple(
-                Type type,
-                BindingFlags bindingAttr)
-            {
-                Type = type;
-                BindingAttr = bindingAttr;
-            }
-
-            public Type Type { get; }
-            public BindingFlags BindingAttr { get; }
-
-            public bool Equals(
-#if NETCOREAPP3_0 || NETSTANDARD2_1
-                [AllowNull]
-#endif
-                TypeBindingFlagsTuple other) =>
-                Type == other.Type && BindingAttr == other.BindingAttr;
-
-            public override bool Equals(object? obj) =>
-                obj is TypeBindingFlagsTuple tuple ?
-                    this.Equals(tuple) :
-                    false;
-
-            public override int GetHashCode() =>
-                unchecked((Type?.GetHashCode() ?? 1) * BindingAttr.GetHashCode());
         }
     }
 }
