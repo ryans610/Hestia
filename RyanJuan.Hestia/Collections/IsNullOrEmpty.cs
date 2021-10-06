@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace RyanJuan.Hestia
@@ -16,11 +15,10 @@ namespace RyanJuan.Hestia
         /// <param name="source"></param>
         /// <returns></returns>
 #endif
-        public static ReadOnlyCollection<TSource> ToReadOnlyCollection<TSource>(
+        public static bool IsNullOrEmpty<TSource>(
             this IEnumerable<TSource> source)
         {
-            Error.ThrowIfArgumentNull(nameof(source), source);
-            return source.ToList().AsReadOnly();
+            return source is null || IsEmptyInternal(source);
         }
     }
 }

@@ -15,11 +15,7 @@ namespace RyanJuan.Hestia.NonGeneric
             {
                 return true;
             }
-            if (x is null && y is null)
-            {
-                return true;
-            }
-            else if (x is null || y is null)
+            if (x is null || y is null)
             {
                 return false;
             }

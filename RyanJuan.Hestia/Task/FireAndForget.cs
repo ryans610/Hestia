@@ -18,11 +18,11 @@ namespace RyanJuan.Hestia
             {
                 await task;
             }
-            catch (Exception ex)
+            catch (Exception exception)
             {
                 if (exceptionHandler is { })
                 {
-                    exceptionHandler(ex);
+                    exceptionHandler(exception);
                 }
             }
         }

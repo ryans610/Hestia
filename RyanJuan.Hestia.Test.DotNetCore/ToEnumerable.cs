@@ -8,10 +8,10 @@ using System.Linq;
 namespace RyanJuan.Hestia.Test.DotNetCore
 {
     [TestClass]
-    public class ToEnumerable
+    public class TestToEnumerable
     {
         [TestMethod]
-        public void TestToEnumerable()
+        public void TestItemToEnumerable()
         {
             int origin = 5;
             var result1 = origin.ToEnumerable();

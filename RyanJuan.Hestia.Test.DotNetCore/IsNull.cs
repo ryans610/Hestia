@@ -6,7 +6,7 @@ using RyanJuan.Hestia;
 namespace RyanJuan.Hestia.Test.DotNetCore
 {
     [TestClass]
-    public class IsNull
+    public class TestIsNull
     {
         private static readonly string s_stringNotNull = "ABC123abc";
 

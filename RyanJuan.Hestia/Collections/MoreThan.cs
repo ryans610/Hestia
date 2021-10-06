@@ -16,6 +16,13 @@ namespace RyanJuan.Hestia
         {
             Error.ThrowIfArgumentNull(nameof(source), source);
             Error.ThrowIfArgumentSmallerThanZero(nameof(number), number);
+            return MoreThanInternal(source, number);
+        }
+
+        internal static bool MoreThanInternal<TSource>(
+            this IEnumerable<TSource> source,
+            int number)
+        {
             if (source is ICollection<TSource> collectionT)
             {
                 return collectionT.Count > number;

@@ -1,82 +1,105 @@
 ﻿using System;
 using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using RyanJuan.Hestia;
 using System.Linq;
+
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+using RyanJuan.Hestia;
 
 namespace RyanJuan.Hestia.Test.DotNetCore.Collections
 {
     [TestClass]
-    public class ArrayConcat
+    public class TestArrayConcat
     {
         [TestMethod]
-        public void TestArrayConcatTwo()
+        public void TestNull()
         {
-            var rand = new Random();
-            var arr1 = new int[rand.Next(100)];
-            var arr2 = new int[rand.Next(100)];
-            for (int i = 0; i < arr1.Length; i++)
+            int[] arr1 = null;
+            var arr2 = new int[5];
+            try
             {
-                arr1[i] = rand.Next();
+                arr1.Concat(arr2);
             }
-            for (int i = 0; i < arr2.Length; i++)
+            catch (ArgumentNullException)
             {
-                arr2[i] = rand.Next();
+                return;
             }
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestConcatNull()
+        {
+            var arr1 = new int[5];
+            try
+            {
+                arr1.Concat(null);
+            }
+            catch (ArgumentNullException)
+            {
+                return;
+            }
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestConcatAnyNull()
+        {
+            var arr1 = new int[5];
+            try
+            {
+                arr1.Concat(new int[3], null);
+            }
+            catch (ArgumentNullException)
+            {
+                return;
+            }
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestConcatEmpty()
+        {
+            var arr1 = CreateRandomArray();
+            var arr2 = new int[0];
+            var result1 = arr1.Concat(arr2);
+            AssertTwoArrayEquals(result1, arr1);
+            var result2 = arr2.Concat(arr1);
+            AssertTwoArrayEquals(result2, arr1);
+            var result3 = arr1.Concat(arr2, arr2, arr2);
+            AssertTwoArrayEquals(result3, arr1);
+        }
+
+        [TestMethod]
+        public void TestConcatTwo()
+        {
+            var arr1 = CreateRandomArray();
+            var arr2 = CreateRandomArray();
             var result1 = arr1.Concat(arr2);
             var result2 = arr1.AsEnumerable().Concat(arr2).ToArray();
-            Assert.AreEqual(result1.Length, result2.Length);
-            for (int i = 0; i < result1.Length; i++)
-            {
-                Assert.AreEqual(result1[i], result2[i]);
-            }
+            AssertTwoArrayEquals(result1, result2);
         }
 
         [TestMethod]
-        public void TestArrayConcatThree()
+        public void TestConcatThree()
         {
-            var rand = new Random();
-            var arr1 = new int[rand.Next(100)];
-            var arr2 = new int[rand.Next(100)];
-            var arr3 = new int[rand.Next(100)];
-            for (int i = 0; i < arr1.Length; i++)
-            {
-                arr1[i] = rand.Next();
-            }
-            for (int i = 0; i < arr2.Length; i++)
-            {
-                arr2[i] = rand.Next();
-            }
-            for (int i = 0; i < arr3.Length; i++)
-            {
-                arr3[i] = rand.Next();
-            }
+            var arr1 = CreateRandomArray();
+            var arr2 = CreateRandomArray();
+            var arr3 = CreateRandomArray();
             var result1 = arr1.Concat(arr2, arr3);
             var result2 = arr1.AsEnumerable().Concat(arr2).Concat(arr3).ToArray();
-            Assert.AreEqual(result1.Length, result2.Length);
-            for (int i = 0; i < result1.Length; i++)
-            {
-                Assert.AreEqual(result1[i], result2[i]);
-            }
+            AssertTwoArrayEquals(result1, result2);
         }
 
         [TestMethod]
-        public void TestArrayConcatMany()
+        public void TestConcatMany()
         {
             var rand = new Random();
-            var arr1 = new int[rand.Next(100)];
+            var arr1 = CreateRandomArray();
             var arrOther = new int[rand.Next(20)][];
-            for (int i = 0; i < arr1.Length; i++)
-            {
-                arr1[i] = rand.Next();
-            }
             for (int i = 0; i < arrOther.Length; i++)
             {
-                arrOther[i] = new int[rand.Next(100)];
-                for (int j = 0; j < arrOther[i].Length; j++)
-                {
-                    arrOther[i][j] = rand.Next();
-                }
+                arrOther[i] = CreateRandomArray();
             }
             var result1 = arr1.Concat(arrOther);
             var resultEnumerable = arr1.AsEnumerable();
@@ -85,8 +108,24 @@ namespace RyanJuan.Hestia.Test.DotNetCore.Collections
                 resultEnumerable = resultEnumerable.Concat(arrOther[i]);
             }
             var result2 = resultEnumerable.ToArray();
+            AssertTwoArrayEquals(result1, result2);
+        }
+
+        private static int[] CreateRandomArray()
+        {
+            var random = new Random(Guid.NewGuid().GetHashCode());
+            var arr = new int[random.Next(100)];
+            for (int i = 0; i < arr.Length; i += 1)
+            {
+                arr[i] = random.Next();
+            }
+            return arr;
+        }
+
+        private static void AssertTwoArrayEquals(int[] result1, int[] result2)
+        {
             Assert.AreEqual(result1.Length, result2.Length);
-            for (int i = 0; i < result1.Length; i++)
+            for (int i = 0; i < result1.Length; i += 1)
             {
                 Assert.AreEqual(result1[i], result2[i]);
             }

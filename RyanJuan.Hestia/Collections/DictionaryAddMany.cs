@@ -51,7 +51,7 @@ namespace RyanJuan.Hestia
         /// is <see langword="null"/>.
         /// </exception>
 #endif
-        public static void AddRange<TKey, TValue>(
+        public static void AddMany<TKey, TValue>(
             this IDictionary<TKey, TValue> dictionary,
             IEnumerable<KeyValuePair<TKey, TValue>> values)
             where TKey : notnull
@@ -109,7 +109,7 @@ namespace RyanJuan.Hestia
         /// <paramref name="keySelector"/> is <see langword="null"/>.
         /// </exception>
 #endif
-        public static void AddRange<TSource, TKey>(
+        public static void AddMany<TSource, TKey>(
             this IDictionary<TKey, TSource> dictionary,
             IEnumerable<TSource> source,
             Func<TSource, TKey> keySelector)
@@ -181,7 +181,7 @@ namespace RyanJuan.Hestia
         /// is <see langword="null"/>.
         /// </exception>
 #endif
-        public static void AddRange<TSource, TKey, TElement>(
+        public static void AddMany<TSource, TKey, TElement>(
             this IDictionary<TKey, TElement> dictionary,
             IEnumerable<TSource> source,
             Func<TSource, TKey> keySelector,

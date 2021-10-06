@@ -12,7 +12,8 @@ namespace RyanJuan.Hestia
         public static bool MoreThanOne<TSource>(
             this IEnumerable<TSource> source)
         {
-            return source.MoreThan(1);
+            Error.ThrowIfArgumentNull(nameof(source), source);
+            return MoreThanInternal(source, 1);
         }
     }
 }

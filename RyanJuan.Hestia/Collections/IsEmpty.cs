@@ -20,6 +20,12 @@ namespace RyanJuan.Hestia
             this IEnumerable<TSource> source)
         {
             Error.ThrowIfArgumentNull(nameof(source), source);
+            return IsEmptyInternal(source);
+        }
+
+        internal static bool IsEmptyInternal<TSource>(
+            IEnumerable<TSource> source)
+        {
             if (source is ICollection<TSource> collectionT)
             {
                 return collectionT.Count == 0;

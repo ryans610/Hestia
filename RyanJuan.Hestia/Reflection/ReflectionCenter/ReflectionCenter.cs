@@ -38,12 +38,10 @@ namespace RyanJuan.Hestia
                 Type == other.Type && Name == other.Name;
 
             public override bool Equals(object? obj) =>
-                obj is TypeStringTuple tuple ?
-                    this.Equals(tuple) :
-                    false;
+                obj is TypeStringTuple tuple && this.Equals(tuple);
 
             public override int GetHashCode() =>
-                unchecked((Type?.GetHashCode() ?? 1) * (Name?.GetHashCode() ?? 1));
+                HashCode.Combine(Type, Name);
         }
 
         private readonly struct TypeBindingFlagsTuple : IEquatable<TypeBindingFlagsTuple>
@@ -63,12 +61,10 @@ namespace RyanJuan.Hestia
                 Type == other.Type && BindingAttr == other.BindingAttr;
 
             public override bool Equals(object? obj) =>
-                obj is TypeBindingFlagsTuple tuple ?
-                    this.Equals(tuple) :
-                    false;
+                obj is TypeBindingFlagsTuple tuple && this.Equals(tuple);
 
             public override int GetHashCode() =>
-                unchecked((Type?.GetHashCode() ?? 1) * BindingAttr.GetHashCode());
+                HashCode.Combine(Type, BindingAttr);
         }
     }
 }

@@ -9,7 +9,7 @@ namespace RyanJuan.Hestia
 #endif
         public static TEnum[] GetValues<TEnum>()
         {
-            return (TEnum[])Enum.GetValues(typeof(TEnum));
+            return (TEnum[])EnumCacheCenter.GetValues(typeof(TEnum));
         }
     }
 }

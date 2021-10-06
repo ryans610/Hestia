@@ -10,18 +10,8 @@ namespace RyanJuan.Hestia
 #else
 #endif
         public static HashSet<TSource> ToHashSet<TSource>(
-            this IEnumerable<TSource> source)
-        {
-            Error.ThrowIfArgumentNull(nameof(source), source);
-            return new HashSet<TSource>(source);
-        }
-
-#if ZH_HANT
-#else
-#endif
-        public static HashSet<TSource> ToHashSet<TSource>(
             this IEnumerable<TSource> source,
-            IEqualityComparer<TSource>? comparer)
+            IEqualityComparer<TSource>? comparer = null)
         {
             Error.ThrowIfArgumentNull(nameof(source), source);
             return new HashSet<TSource>(source, comparer);
