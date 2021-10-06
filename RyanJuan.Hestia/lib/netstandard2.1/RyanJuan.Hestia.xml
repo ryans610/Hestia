@@ -578,6 +578,54 @@
             
             </summary>
         </member>
+        <member name="M:RyanJuan.Hestia.Defer.DoAsync(System.Func{System.Threading.Tasks.ValueTask})">
+            <summary>
+            
+            </summary>
+            <param name="deferAction"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RyanJuan.Hestia.Defer.DeferAsyncDisposable">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:RyanJuan.Hestia.Defer.DeferAsyncDisposable.#ctor(System.Func{System.Threading.Tasks.ValueTask})">
+            <summary>
+            
+            </summary>
+            <param name="deferAction"></param>
+        </member>
+        <member name="M:RyanJuan.Hestia.Defer.DeferAsyncDisposable.DisposeAsync">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:RyanJuan.Hestia.Defer.DoAsync``1(System.Func{``0,System.Threading.Tasks.ValueTask},``0)">
+            <summary>
+            
+            </summary>
+            <param name="deferAction"></param>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RyanJuan.Hestia.Defer.DeferAsyncDisposable`1">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:RyanJuan.Hestia.Defer.DeferAsyncDisposable`1.#ctor(System.Func{`0,System.Threading.Tasks.ValueTask},`0)">
+            <summary>
+            
+            </summary>
+            <param name="deferAction"></param>
+            <param name="param"></param>
+        </member>
+        <member name="M:RyanJuan.Hestia.Defer.DeferAsyncDisposable`1.DisposeAsync">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:RyanJuan.Hestia.HestiaEnum">
             <summary>
             

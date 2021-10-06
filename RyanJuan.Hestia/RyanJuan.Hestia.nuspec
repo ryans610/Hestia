@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>RyanJuan.Hestia</id>
-    <version>1.0.0-alpha00712</version>
+    <version>1.0.0-alpha21006</version>
     <description>Hestia alpha test.</description>
     <authors>RyanJuan</authors>
     <owners>RyanJuan</owners>
@@ -13,8 +13,12 @@
     <copyright>Copyright ©2019 RyanJuan</copyright>
     <language>en,zh-Hant</language>
     <dependencies>
+      <group targetFramework="net40" />
+      <group targetFramework="net45" />
       <group targetFramework="netstandard2.0" />
+      <group targetFramework="netstandard2.1" />
       <group targetFramework="netcoreapp2.1" />
+      <group targetFramework="netcoreapp3.0" />
     </dependencies>
   </metadata>
   <files>

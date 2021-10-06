@@ -114,7 +114,9 @@ namespace RyanJuan.Hestia
         /// <paramref name="dictionary"/> is <see langword="null"/>.
         /// </exception>
 #endif
+#if NETCOREAPP3_0_OR_GREATER || NETSTANDARD2_1_OR_GREATER
         [return: MaybeNull]
+#endif
         public static TValue GetValueOrDefault<TKey, TValue>(
             this IDictionary<TKey, TValue> dictionary,
             TKey key)

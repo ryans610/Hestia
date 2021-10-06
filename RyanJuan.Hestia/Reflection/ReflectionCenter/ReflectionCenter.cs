@@ -41,7 +41,11 @@ namespace RyanJuan.Hestia
                 obj is TypeStringTuple tuple && this.Equals(tuple);
 
             public override int GetHashCode() =>
+#if NETCOREAPP2_1_OR_GREATER|| NETSTANDARD2_1_OR_GREATER
                 HashCode.Combine(Type, Name);
+#else
+                unchecked((Type?.GetHashCode() ?? 0) * (Name?.GetHashCode() ?? 0));
+#endif
         }
 
         private readonly struct TypeBindingFlagsTuple : IEquatable<TypeBindingFlagsTuple>
@@ -64,7 +68,11 @@ namespace RyanJuan.Hestia
                 obj is TypeBindingFlagsTuple tuple && this.Equals(tuple);
 
             public override int GetHashCode() =>
+#if NETCOREAPP2_1_OR_GREATER|| NETSTANDARD2_1_OR_GREATER
                 HashCode.Combine(Type, BindingAttr);
+#else
+                unchecked((Type?.GetHashCode() ?? 0) * BindingAttr.GetHashCode());
+#endif
         }
     }
 }

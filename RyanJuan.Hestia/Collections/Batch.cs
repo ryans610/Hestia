@@ -28,7 +28,7 @@ namespace RyanJuan.Hestia
                     $"{nameof(batchSize)} is less than or equals to 0.",
                     batchSize);
             }
-#if NETCOREAPP3_0 || NETSTANDARD2_1
+#if NETCOREAPP3_0_OR_GREATER || NETSTANDARD2_1_OR_GREATER
             if (source is TSource[] array)
             {
                 int start = 0;

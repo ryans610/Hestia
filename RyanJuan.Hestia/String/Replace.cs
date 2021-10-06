@@ -42,7 +42,7 @@ namespace RyanJuan.Hestia
             return value.Replace(replacePairs.AsEnumerable());
         }
 
-#if NETCOREAPP3_0 || NETCOREAPP2_1 || NETSTANDARD2_1 || NETSTANDARD2_0
+#if NETCOREAPP2_1_OR_GREATER || NETSTANDARD2_0_OR_GREATER
 #if ZH_HANT
 #else
 #endif

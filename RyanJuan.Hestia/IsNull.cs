@@ -15,7 +15,7 @@ namespace RyanJuan.Hestia
         /// <returns></returns>
 #endif
         public static bool IsNull<T>(
-#if NETCOREAPP3_0 || NETSTANDARD2_1
+#if NETCOREAPP3_0_OR_GREATER || NETSTANDARD2_1_OR_GREATER
             [NotNullWhen(false)]
 #endif
             this T obj)
@@ -34,7 +34,7 @@ namespace RyanJuan.Hestia
         /// <returns></returns>
 #endif
         public static bool IsNotNull<T>(
-#if NETCOREAPP3_0 || NETSTANDARD2_1
+#if NETCOREAPP3_0_OR_GREATER || NETSTANDARD2_1_OR_GREATER
             [NotNullWhen(true)]
 #endif
             this T obj)

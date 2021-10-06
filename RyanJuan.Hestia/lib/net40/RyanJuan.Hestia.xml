@@ -4,33 +4,6 @@
         <name>RyanJuan.Hestia</name>
     </assembly>
     <members>
-        <member name="T:RyanJuan.Hestia.BackgroundRunner">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:RyanJuan.Hestia.BackgroundRunner.Run(System.Action,System.Action{System.Exception})">
-            <summary>
-            Fire and forget.
-            </summary>
-            <param name="action"></param>
-            <param name="exceptionHandler"></param>
-        </member>
-        <member name="M:RyanJuan.Hestia.BackgroundRunner.Run(System.Func{System.Threading.Tasks.Task},System.Action{System.Exception})">
-            <summary>
-            Fire and forget.
-            </summary>
-            <param name="function"></param>
-            <param name="exceptionHandler"></param>
-        </member>
-        <member name="M:RyanJuan.Hestia.BackgroundRunner.Run``1(System.Func{System.Threading.Tasks.Task{``0}},System.Action{System.Exception})">
-            <summary>
-            Fire and forget.
-            </summary>
-            <typeparam name="TResult"></typeparam>
-            <param name="function"></param>
-            <param name="exceptionHandler"></param>
-        </member>
         <member name="T:RyanJuan.Hestia.Hestia">
             <summary>
             
@@ -343,29 +316,6 @@
             <paramref name="dictionary"/>, <paramref name="source"/>, <paramref name="keySelector"/>
             or <paramref name="elementSelector"/>
             is <see langword="null"/>.
-            </exception>
-        </member>
-        <member name="M:RyanJuan.Hestia.HestiaCollections.AsReadOnly``2(System.Collections.Generic.IDictionary{``0,``1})">
-            <summary>
-            Returns a read-only <see cref="T:System.Collections.ObjectModel.ReadOnlyDictionary`2"/> wrapper for
-            the specific <see cref="T:System.Collections.Generic.IDictionary`2"/>.
-            </summary>
-            <typeparam name="TKey">
-            The type of the key of <paramref name="dictionary"/>.
-            </typeparam>
-            <typeparam name="TValue">
-            The type of the value of <paramref name="dictionary"/>.
-            </typeparam>
-            <param name="dictionary">
-            The <see cref="T:System.Collections.Generic.IDictionary`2"/> to wrap as
-            <see cref="T:System.Collections.ObjectModel.ReadOnlyDictionary`2"/>.
-            </param>
-            <returns>
-            A <see cref="T:System.Collections.ObjectModel.ReadOnlyDictionary`2"/> that wrap around the specific
-            <see cref="T:System.Collections.Generic.IDictionary`2"/>.
-            </returns>
-            <exception cref="T:System.ArgumentNullException">
-            <paramref name="dictionary"/> is <see langword="null"/>.
             </exception>
         </member>
         <member name="M:RyanJuan.Hestia.HestiaCollections.GetValueOrDefault``2(System.Collections.Generic.IDictionary{``0,``1},``0,``1)">

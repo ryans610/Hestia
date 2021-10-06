@@ -27,7 +27,7 @@ namespace RyanJuan.Hestia
             {
                 return description.Description;
             }
-#if NETCOREAPP3_0 || NETCOREAPP2_1
+#if NETCOREAPP3_0_OR_GREATER || NETCOREAPP2_1_OR_GREATER
             var displayName = fieldInfo.GetCustomAttribute<DisplayAttribute>();
             if (displayName?.Name?.IsNotNullOrEmpty() ?? false)
             {

@@ -51,6 +51,62 @@
             <param name="value"></param>
             <returns></returns>
         </member>
+        <member name="M:RyanJuan.Hestia.Hestia.IsWhiteSpace(System.Char)">
+            <summary>
+            
+            </summary>
+            <param name="c"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RyanJuan.Hestia.Hestia.IsNotWhiteSpace(System.Char)">
+            <summary>
+            
+            </summary>
+            <param name="c"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RyanJuan.Hestia.Hestia.SupportedRuntimes">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:RyanJuan.Hestia.Hestia.SupportedRuntimes.NET40">
+            <summary>
+            .Net Framework 4.0
+            </summary>
+        </member>
+        <member name="F:RyanJuan.Hestia.Hestia.SupportedRuntimes.NET45">
+            <summary>
+            .Net Framework 4.5
+            </summary>
+        </member>
+        <member name="F:RyanJuan.Hestia.Hestia.SupportedRuntimes.NETSTANDARD2_0">
+            <summary>
+            .Net Standard 2.0
+            </summary>
+        </member>
+        <member name="F:RyanJuan.Hestia.Hestia.SupportedRuntimes.NETSTANDARD2_1">
+            <summary>
+            .Net Standard 2.1
+            </summary>
+        </member>
+        <member name="F:RyanJuan.Hestia.Hestia.SupportedRuntimes.NETCOREAPP2_1">
+            <summary>
+            .Net Core 2.1
+            </summary>
+        </member>
+        <member name="F:RyanJuan.Hestia.Hestia.SupportedRuntimes.NETCOREAPP3_0">
+            <summary>
+            .Net Core 3.0
+            </summary>
+        </member>
+        <member name="P:RyanJuan.Hestia.Hestia.CurrentTargetedRuntimeVersion">
+            <summary>
+            The targeted .NET runtime of Hestia.
+            .NET will automatic chosen the closest version
+            if there is no matching runtime.
+            </summary>
+        </member>
         <member name="M:RyanJuan.Hestia.Hestia.IsNull``1(``0)">
             <summary>
             
@@ -59,54 +115,12 @@
             <param name="obj"></param>
             <returns></returns>
         </member>
-        <member name="M:RyanJuan.Hestia.Hestia.IsNull(System.String)">
-            <summary>
-            
-            </summary>
-            <param name="str"></param>
-            <returns></returns>
-        </member>
         <member name="M:RyanJuan.Hestia.Hestia.IsNotNull``1(``0)">
             <summary>
             
             </summary>
             <typeparam name="T"></typeparam>
             <param name="obj"></param>
-            <returns></returns>
-        </member>
-        <member name="M:RyanJuan.Hestia.Hestia.IsNotNull(System.String)">
-            <summary>
-            
-            </summary>
-            <param name="str"></param>
-            <returns></returns>
-        </member>
-        <member name="M:RyanJuan.Hestia.Hestia.IsNullOrEmpty(System.String)">
-            <summary>
-            
-            </summary>
-            <param name="str"></param>
-            <returns></returns>
-        </member>
-        <member name="M:RyanJuan.Hestia.Hestia.IsNotNullOrEmpty(System.String)">
-            <summary>
-            
-            </summary>
-            <param name="str"></param>
-            <returns></returns>
-        </member>
-        <member name="M:RyanJuan.Hestia.Hestia.IsNullOrWhiteSpace(System.String)">
-            <summary>
-            
-            </summary>
-            <param name="str"></param>
-            <returns></returns>
-        </member>
-        <member name="M:RyanJuan.Hestia.Hestia.IsNotNullOrWhiteSpace(System.String)">
-            <summary>
-            
-            </summary>
-            <param name="str"></param>
             <returns></returns>
         </member>
         <member name="M:RyanJuan.Hestia.Hestia.ToStringOrEmpty(System.Nullable{System.DateTime},System.String,System.IFormatProvider)">
@@ -209,13 +223,6 @@
             <paramref name="source"/> is <see langword="null"/>.
             </exception>
         </member>
-        <member name="M:RyanJuan.Hestia.HestiaCollections.Any(System.Collections.IEnumerable)">
-            <summary>
-            
-            </summary>
-            <param name="source"></param>
-            <returns></returns>
-        </member>
         <member name="M:RyanJuan.Hestia.HestiaCollections.Concat``1(``0[],``0[][])">
             <summary>
             Concatenates two or many arrays.
@@ -231,6 +238,14 @@
             <paramref name="first"/> or <paramref name="others"/> is <see langword="null"/>,
             or any item in <paramref name="others"/> is <see langword="null"/>.
             </exception>
+        </member>
+        <member name="M:RyanJuan.Hestia.HestiaCollections.Contains``1(``0[],``0)">
+            <summary>
+            
+            </summary>
+            <param name="array"></param>
+            <param name="value"></param>
+            <returns></returns>
         </member>
         <member name="M:RyanJuan.Hestia.HestiaCollections.Batch``1(System.Collections.Generic.IEnumerable{``0},System.Int32)">
             <summary>
@@ -253,14 +268,7 @@
             <paramref name="source"/> is <see langword="null"/>.
             </exception>
         </member>
-        <member name="M:RyanJuan.Hestia.HestiaCollections.Count(System.Collections.IEnumerable)">
-            <summary>
-            
-            </summary>
-            <param name="source"></param>
-            <returns></returns>
-        </member>
-        <member name="M:RyanJuan.Hestia.HestiaCollections.AddRange``2(System.Collections.Generic.IDictionary{``0,``1},System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{``0,``1}})">
+        <member name="M:RyanJuan.Hestia.HestiaCollections.AddMany``2(System.Collections.Generic.IDictionary{``0,``1},System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{``0,``1}})">
             <summary>
             Adds the multiple <see cref="T:System.Collections.Generic.KeyValuePair`2"/> to the
             <see cref="T:System.Collections.Generic.IDictionary`2"/>.
@@ -282,7 +290,7 @@
             is <see langword="null"/>.
             </exception>
         </member>
-        <member name="M:RyanJuan.Hestia.HestiaCollections.AddRange``2(System.Collections.Generic.IDictionary{``1,``0},System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})">
+        <member name="M:RyanJuan.Hestia.HestiaCollections.AddMany``2(System.Collections.Generic.IDictionary{``1,``0},System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})">
             <summary>
             Adds the multiple values to the <see cref="T:System.Collections.Generic.IDictionary`2"/>.
             </summary>
@@ -306,7 +314,7 @@
             <paramref name="keySelector"/> is <see langword="null"/>.
             </exception>
         </member>
-        <member name="M:RyanJuan.Hestia.HestiaCollections.AddRange``3(System.Collections.Generic.IDictionary{``1,``2},System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Func{``0,``2})">
+        <member name="M:RyanJuan.Hestia.HestiaCollections.AddMany``3(System.Collections.Generic.IDictionary{``1,``2},System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Func{``0,``2})">
             <summary>
             Adds the multiple values to the <see cref="T:System.Collections.Generic.IDictionary`2"/>.
             </summary>
@@ -360,6 +368,58 @@
             <paramref name="dictionary"/> is <see langword="null"/>.
             </exception>
         </member>
+        <member name="M:RyanJuan.Hestia.HestiaCollections.GetValueOrDefault``2(System.Collections.Generic.IDictionary{``0,``1},``0,``1)">
+            <summary>
+            Tries to get the value associated with the specified key in the
+            <paramref name="dictionary"/>.
+            </summary>
+            <typeparam name="TKey">The type of the keys in the dictionary.</typeparam>
+            <typeparam name="TValue">The type of the values in the dictionary.</typeparam>
+            <param name="dictionary">
+            A dictionary with keys of type <typeparamref name="TKey"/>
+            and values of type <typeparamref name="TValue"/>.
+            </param>
+            <param name="key">The key of the value to get.</param>
+            <param name="defaultValue">
+            The default value to return when the <paramref name="dictionary"/>
+            cannot find a value associated with the specified 
+            <paramref name="key"/>.
+            </param>
+            <returns>
+            A <typeparamref name="TValue"/> instance.
+            When the method is successful,
+            the returned object is the value associated with the specified
+            <paramref name="key"/>. When the method fails, it returns
+            <paramref name="defaultValue"/>.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">
+            <paramref name="dictionary"/> is <see langword="null"/>.
+            </exception>
+        </member>
+        <member name="M:RyanJuan.Hestia.HestiaCollections.GetValueOrDefault``2(System.Collections.Generic.IDictionary{``0,``1},``0)">
+            <summary>
+            Tries to get the value associated with the specified key in the
+            <paramref name="dictionary"/>.
+            </summary>
+            <typeparam name="TKey">The type of the keys in the dictionary.</typeparam>
+            <typeparam name="TValue">The type of the values in the dictionary.</typeparam>
+            <param name="dictionary">
+            A dictionary with keys of type <typeparamref name="TKey"/>
+            and values of type <typeparamref name="TValue"/>.
+            </param>
+            <param name="key">The key of the value to get.</param>
+            <returns>
+            A <typeparamref name="TValue"/> instance.
+            When the method is successful,
+            the returned object is the value associated with the specified
+            <paramref name="key"/>. When the method fails, it returns
+            the <see langword="default"/> value for 
+            <typeparamref name="TValue"/>.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">
+            <paramref name="dictionary"/> is <see langword="null"/>.
+            </exception>
+        </member>
         <member name="M:RyanJuan.Hestia.HestiaCollections.IsEmpty``1(System.Collections.Generic.IEnumerable{``0})">
             <summary>
             
@@ -368,7 +428,15 @@
             <param name="source"></param>
             <returns></returns>
         </member>
-        <member name="M:RyanJuan.Hestia.HestiaCollections.Split``1(System.Collections.Generic.IEnumerable{``0},``0,System.Collections.Generic.IEqualityComparer{``0})">
+        <member name="M:RyanJuan.Hestia.HestiaCollections.IsNullOrEmpty``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TSource"></typeparam>
+            <param name="source"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RyanJuan.Hestia.HestiaCollections.Split``1(System.Collections.Generic.IEnumerable{``0},``0,System.Collections.Generic.IEqualityComparer{``0},RyanJuan.Hestia.EnumerableSplitOptions)">
             <summary>
             
             </summary>
@@ -376,15 +444,7 @@
             <param name="source"></param>
             <param name="separator"></param>
             <param name="comparer"></param>
-            <returns></returns>
-        </member>
-        <member name="M:RyanJuan.Hestia.HestiaCollections.Split``1(System.Collections.Generic.IEnumerable{``0},``0)">
-            <summary>
-            
-            </summary>
-            <typeparam name="TSource"></typeparam>
-            <param name="source"></param>
-            <param name="separator"></param>
+            <param name="options"></param>
             <returns></returns>
         </member>
         <member name="M:RyanJuan.Hestia.HestiaCollections.ToList``1(System.Collections.Generic.IEnumerable{``0},System.Int32)">
@@ -403,6 +463,125 @@
             <typeparam name="TSource"></typeparam>
             <param name="source"></param>
             <returns></returns>
+        </member>
+        <member name="T:RyanJuan.Hestia.NonGeneric.HestiaNonGenericCollections">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:RyanJuan.Hestia.NonGeneric.HestiaNonGenericCollections.All(System.Collections.IEnumerable,System.Func{System.Object,System.Boolean})">
+            <summary>
+            
+            </summary>
+            <param name="source"></param>
+            <param name="predicate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RyanJuan.Hestia.NonGeneric.HestiaNonGenericCollections.Any(System.Collections.IEnumerable)">
+            <summary>
+            
+            </summary>
+            <param name="source"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RyanJuan.Hestia.NonGeneric.HestiaNonGenericCollections.Any(System.Collections.IEnumerable,System.Func{System.Object,System.Boolean})">
+            <summary>
+            
+            </summary>
+            <param name="source"></param>
+            <param name="predicate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RyanJuan.Hestia.NonGeneric.HestiaNonGenericCollections.Contains(System.Collections.IEnumerable,System.Object,System.Collections.IEqualityComparer)">
+            <summary>
+            
+            </summary>
+            <param name="source"></param>
+            <param name="value"></param>
+            <param name="comparer"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RyanJuan.Hestia.NonGeneric.HestiaNonGenericCollections.Contains(System.Collections.IEnumerable,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="source"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RyanJuan.Hestia.NonGeneric.HestiaNonGenericCollections.Count(System.Collections.IEnumerable)">
+            <summary>
+            
+            </summary>
+            <param name="source"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RyanJuan.Hestia.NonGeneric.HestiaNonGenericCollections.LongCount(System.Collections.IEnumerable)">
+            <summary>
+            
+            </summary>
+            <param name="source"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RyanJuan.Hestia.Defer">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:RyanJuan.Hestia.Defer.Do(System.Action)">
+            <summary>
+            
+            </summary>
+            <param name="deferAction"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RyanJuan.Hestia.Defer.DeferDisposable">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:RyanJuan.Hestia.Defer.DeferDisposable.#ctor(System.Action)">
+            <summary>
+            
+            </summary>
+            <param name="deferAction"></param>
+        </member>
+        <member name="M:RyanJuan.Hestia.Defer.DeferDisposable.Dispose">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:RyanJuan.Hestia.Defer.Do``1(System.Action{``0},``0)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TParam"></typeparam>
+            <param name="deferAction"></param>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RyanJuan.Hestia.Defer.DeferDisposable`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="TParam"></typeparam>
+        </member>
+        <member name="M:RyanJuan.Hestia.Defer.DeferDisposable`1.#ctor(System.Action{`0},`0)">
+            <summary>
+            
+            </summary>
+            <param name="deferAction"></param>
+            <param name="param"></param>
+        </member>
+        <member name="M:RyanJuan.Hestia.Defer.DeferDisposable`1.Dispose">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:RyanJuan.Hestia.HestiaEnum">
+            <summary>
+            
+            </summary>
         </member>
         <member name="T:RyanJuan.Hestia.HestiaReflection">
             <summary>
@@ -436,18 +615,141 @@
             <paramref name="memberInfo"/> or <paramref name="obj"/> is <see langword="null"/>.
             </exception>
         </member>
-        <member name="T:RyanJuan.Hestia.HestiaTask">
+        <member name="T:RyanJuan.Hestia.ReflectionCenter">
+            <summary>
+            
+            </summary>
             <summary>
             
             </summary>
         </member>
-        <member name="M:RyanJuan.Hestia.HestiaTask.WaitResult``1(System.Threading.Tasks.Task{``0})">
+        <member name="T:RyanJuan.Hestia.HestiaString">
             <summary>
             
             </summary>
-            <typeparam name="TResult"></typeparam>
-            <param name="task"></param>
+        </member>
+        <member name="M:RyanJuan.Hestia.HestiaString.IsEmpty(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
             <returns></returns>
+        </member>
+        <member name="M:RyanJuan.Hestia.HestiaString.IsNotEmpty(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RyanJuan.Hestia.HestiaString.IsNull(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RyanJuan.Hestia.HestiaString.IsNotNull(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RyanJuan.Hestia.HestiaString.IsNullOrEmpty(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RyanJuan.Hestia.HestiaString.IsNotNullOrEmpty(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RyanJuan.Hestia.HestiaString.IsNullOrWhiteSpace(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RyanJuan.Hestia.HestiaString.IsNotNullOrWhiteSpace(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RyanJuan.Hestia.HestiaString.IsWhiteSpace(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RyanJuan.Hestia.HestiaString.IsNotWhiteSpace(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RyanJuan.Hestia.HestiaString.RegexEscape(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RyanJuan.Hestia.HestiaString.RegexIsMatch(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="pattern"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RyanJuan.Hestia.HestiaString.RegexMatch(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="pattern"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RyanJuan.Hestia.HestiaString.RegexReplace(System.String,System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="pattern"></param>
+            <param name="replacement"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RyanJuan.Hestia.HestiaString.Slice(System.String,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="length"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RyanJuan.Hestia.HestiaString.SliceByUTF8ByteLength(System.String,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="byteLength"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RyanJuan.Hestia.HestiaTask">
+            <summary>
+            
+            </summary>
         </member>
     </members>
 </doc>

@@ -36,6 +36,47 @@
             
             </summary>
         </member>
+        <member name="T:RyanJuan.Hestia.Hestia.SupportedRuntimes">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:RyanJuan.Hestia.Hestia.SupportedRuntimes.NET40">
+            <summary>
+            .Net Framework 4.0
+            </summary>
+        </member>
+        <member name="F:RyanJuan.Hestia.Hestia.SupportedRuntimes.NET45">
+            <summary>
+            .Net Framework 4.5
+            </summary>
+        </member>
+        <member name="F:RyanJuan.Hestia.Hestia.SupportedRuntimes.NETSTANDARD2_0">
+            <summary>
+            .Net Standard 2.0
+            </summary>
+        </member>
+        <member name="F:RyanJuan.Hestia.Hestia.SupportedRuntimes.NETSTANDARD2_1">
+            <summary>
+            .Net Standard 2.1
+            </summary>
+        </member>
+        <member name="F:RyanJuan.Hestia.Hestia.SupportedRuntimes.NETCOREAPP2_1">
+            <summary>
+            .Net Core 2.1
+            </summary>
+        </member>
+        <member name="F:RyanJuan.Hestia.Hestia.SupportedRuntimes.NETCOREAPP3_0">
+            <summary>
+            .Net Core 3.0
+            </summary>
+        </member>
+        <member name="P:RyanJuan.Hestia.Hestia.CurrentTargetedRuntimeVersion">
+            <summary>
+            Hestia 的目標 .NET 平台。
+            如果沒有符合的平台，.NET 將會自己挑選最接近的版本。
+            </summary>
+        </member>
         <member name="M:RyanJuan.Hestia.Hestia.ToEnumerable``1(``0)">
             <summary>
             將 <paramref name="t"/> 包裹為 <see cref="T:System.Collections.Generic.IEnumerable`1"/>。
@@ -150,7 +191,7 @@
             <paramref name="source"/> 的值為 <see langword="null"/>。
             </exception>
         </member>
-        <member name="M:RyanJuan.Hestia.HestiaCollections.AddRange``2(System.Collections.Generic.IDictionary{``0,``1},System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{``0,``1}})">
+        <member name="M:RyanJuan.Hestia.HestiaCollections.AddMany``2(System.Collections.Generic.IDictionary{``0,``1},System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{``0,``1}})">
             <summary>
             在 <see cref="T:System.Collections.Generic.IDictionary`2"/> 中加入多個
             <see cref="T:System.Collections.Generic.KeyValuePair`2"/>。
@@ -174,7 +215,7 @@
             <see langword="null"/>。
             </exception>
         </member>
-        <member name="M:RyanJuan.Hestia.HestiaCollections.AddRange``2(System.Collections.Generic.IDictionary{``1,``0},System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})">
+        <member name="M:RyanJuan.Hestia.HestiaCollections.AddMany``2(System.Collections.Generic.IDictionary{``1,``0},System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})">
             <summary>
             在 <see cref="T:System.Collections.Generic.IDictionary`2"/> 中加入多個項目。
             </summary>
@@ -196,7 +237,7 @@
             <paramref name="keySelector"/> 的值為 <see langword="null"/>。
             </exception>
         </member>
-        <member name="M:RyanJuan.Hestia.HestiaCollections.AddRange``3(System.Collections.Generic.IDictionary{``1,``2},System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Func{``0,``2})">
+        <member name="M:RyanJuan.Hestia.HestiaCollections.AddMany``3(System.Collections.Generic.IDictionary{``1,``2},System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Func{``0,``2})">
             <summary>
             在 <see cref="T:System.Collections.Generic.IDictionary`2"/> 中加入多個項目。
             </summary>
@@ -246,6 +287,63 @@
             <paramref name="dictionary"/> 的值為 <see langword="null"/>。
             </exception>
         </member>
+        <member name="M:RyanJuan.Hestia.HestiaCollections.GetValueOrDefault``2(System.Collections.Generic.IDictionary{``0,``1},``0,``1)">
+            <summary>
+            嘗試取得與 <paramref name="dictionary"/> 中所指定
+            <paramref name="key"/> 建立關聯的值。
+            </summary>
+            <typeparam name="TKey">字典中索引鍵的類型。</typeparam>
+            <typeparam name="TValue">字典中值的類型。</typeparam>
+            <param name="dictionary">
+            具有 <typeparamref name="TKey"/> 類型索引鍵和 
+            <typeparamref name="TValue"/> 類型值的字典。
+            </param>
+            <param name="key">要取得之值的索引鍵。</param>
+            <param name="defaultValue">
+            當 <paramref name="dictionary"/> 找不到與所指定 
+            <paramref name="key"/> 建立關聯的值時，所要傳回的預設值。
+            </param>
+            <returns>
+            <typeparamref name="TValue"/> 執行個體。
+            當方法成功時，傳回之物件會是與所指定 <paramref name="key"/>
+            建立關聯的值。 當方法失敗時，會傳回 <paramref name="defaultValue"/>。
+            </returns>
+            <exception cref="T:System.ArgumentNullException">
+            <paramref name="dictionary"/> 為 <see langword="null"/>。
+            </exception>
+        </member>
+        <member name="M:RyanJuan.Hestia.HestiaCollections.GetValueOrDefault``2(System.Collections.Generic.IDictionary{``0,``1},``0)">
+            <summary>
+            嘗試取得與 <paramref name="dictionary"/> 中所指定
+            <paramref name="key"/> 建立關聯的值。
+            </summary>
+            <typeparam name="TKey">字典中索引鍵的類型。</typeparam>
+            <typeparam name="TValue">字典中值的類型。</typeparam>
+            <param name="dictionary">
+            具有 <typeparamref name="TKey"/> 類型索引鍵和 
+            <typeparamref name="TValue"/> 類型值的字典。
+            </param>
+            <param name="key">要取得之值的索引鍵。</param>
+            <returns>
+            <typeparamref name="TValue"/> 執行個體。
+            當方法成功時，傳回之物件會是與所指定 <paramref name="key"/>
+            建立關聯的值。 當方法失敗時，會傳回 <typeparamref name="TValue"/> 的
+            <see langword="default"/> 值。
+            </returns>
+            <exception cref="T:System.ArgumentNullException">
+            <paramref name="dictionary"/> 為 <see langword="null"/>。
+            </exception>
+        </member>
+        <member name="T:RyanJuan.Hestia.NonGeneric.HestiaNonGenericCollections">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:RyanJuan.Hestia.HestiaEnum">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:RyanJuan.Hestia.HestiaReflection">
             <summary>
             
@@ -275,6 +373,19 @@
             <exception cref="T:System.ArgumentNullException">
             <paramref name="type"/> 或 <paramref name="obj"/> 的值為 <see langword="null"/>。
             </exception>
+        </member>
+        <member name="T:RyanJuan.Hestia.ReflectionCenter">
+            <summary>
+            
+            </summary>
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:RyanJuan.Hestia.HestiaString">
+            <summary>
+            
+            </summary>
         </member>
         <member name="T:RyanJuan.Hestia.HestiaTask">
             <summary>

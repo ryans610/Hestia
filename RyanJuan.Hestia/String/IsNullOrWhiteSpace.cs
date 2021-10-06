@@ -14,7 +14,7 @@ namespace RyanJuan.Hestia
         /// <returns></returns>
 #endif
         public static bool IsNullOrWhiteSpace(
-#if NETCOREAPP3_0 || NETSTANDARD2_1
+#if NETCOREAPP3_0_OR_GREATER || NETSTANDARD2_1_OR_GREATER
             [NotNullWhen(false)]
 #endif
             this string? value)
@@ -31,7 +31,7 @@ namespace RyanJuan.Hestia
         /// <returns></returns>
 #endif
         public static bool IsNotNullOrWhiteSpace(
-#if NETCOREAPP3_0 || NETSTANDARD2_1
+#if NETCOREAPP3_0_OR_GREATER || NETSTANDARD2_1_OR_GREATER
             [NotNullWhen(true)]
 #endif
             this string? value)
