@@ -32,10 +32,9 @@ namespace RyanJuan.Hestia
             if (source is TSource[] array)
             {
                 int start = 0;
-                int end = 0;
                 while (start < array.Length)
                 {
-                    end = start + batchSize;
+                    int end = start + batchSize;
                     if (end > array.Length)
                     {
                         end = array.Length;
@@ -48,6 +47,8 @@ namespace RyanJuan.Hestia
 #endif
             TSource[]? buffer = null;
             int count = 0;
+            // ReSharper disable once PossibleMultipleEnumeration
+            // will not happen
             using var iterator = source.GetEnumerator();
             while (iterator.MoveNext())
             {

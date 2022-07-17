@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package>
+  <metadata>
+    <id>RyanJuan.Hestia.AspNetCore.Geo</id>
+    <version>1.0.0-beta00717</version>
+    <description>Hestia.AspNetCore.Geo beta test.</description>
+    <authors>RyanJuan</authors>
+    <owners>RyanJuan</owners>
+    <projectUrl>https://github.com/ryans610/Hestia</projectUrl>
+    <license type="expression">MIT</license>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <releaseNotes></releaseNotes>
+    <copyright>Copyright ©2022 RyanJuan</copyright>
+    <language>en</language>
+    <dependencies>
+      <group targetFramework="net6.0">
+        <dependency id="RyanJuan.Hestia" version="1.0.0-beta30716" />
+        <dependency id="RyanJuan.Hestia.AspNetCore" version="1.0.0-beta00719" />
+      </group>
+    </dependencies>
+    <frameworkReferences>
+      <group targetFramework="net6.0">
+        <frameworkReference name="Microsoft.AspNetCore.App"/>
+      </group>
+    </frameworkReferences>
+    <contentFiles>
+      <!-- ReSharper disable MarkupAttributeTypo -->
+      <files include="**\wwwroot\lib\ryanjuan-hestia-aspnetcore-geo\*.js" buildAction="Content" flatten="false" copyToOutput="false" />
+      <!-- ReSharper restore MarkupAttributeTypo -->
+    </contentFiles>
+  </metadata>
+  <files>
+    <file src="build\**" target="build" />
+    <file src="lib\**" target="lib" />
+    <file src="contentFiles\**" target="contentFiles" />
+  </files>
+</package>

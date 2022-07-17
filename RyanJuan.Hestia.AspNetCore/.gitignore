@@ -1,0 +1,5 @@
+# Compiler generate from release config
+lib/
+
+# Include content file for package
+!contentFiles/**

@@ -1,0 +1,8 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Target Name="CopyScriptsToProject" BeforeTargets="Build">
+    <ItemGroup>
+      <SourceScriptFiles Include="$(MSBuildThisFileDirectory)..\contentFiles\any\any\wwwroot\lib\ryanjuan-hestia-aspnetcore\*.js" />
+    </ItemGroup>
+    <Copy SourceFiles="@(SourceScriptFiles)" DestinationFolder="$(ProjectDir)\wwwroot\lib\ryanjuan-hestia-aspnetcore\" SkipUnchangedFiles="true" OverwriteReadOnlyFiles="true" />
+  </Target>
+</Project>

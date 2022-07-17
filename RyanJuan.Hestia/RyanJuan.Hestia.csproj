@@ -5,7 +5,7 @@
     <LangVersion>8.0</LangVersion>
       <Nullable>enable</Nullable>
     <Configurations>Debug;Release;Release-zh-Hant</Configurations>
-    <Version>1.0.0-alpha21006</Version>
+    <Version>1.0.0-beta30716</Version>
     <Authors>RyanJuan</Authors>
   </PropertyGroup>
 
@@ -13,21 +13,20 @@
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <WarningsAsErrors />
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
+    <GenerateDependencyFile>false</GenerateDependencyFile>
+    <DebugType>embedded</DebugType>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release-zh-Hant|AnyCPU'">
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <WarningsAsErrors />
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
+    <GenerateDependencyFile>false</GenerateDependencyFile>
+    <DebugType>embedded</DebugType>
     <DefineConstants>TRACE;ZH_HANT</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Folder Include="lib\netstandard2.0\zh-Hant\" />
-  </ItemGroup>
 
 </Project>
