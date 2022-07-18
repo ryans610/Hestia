@@ -1,8 +1,9 @@
-﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project>
   <Target Name="CopyScriptsToProject" BeforeTargets="Build">
+    <Message Text="Copy RyanJuan.Hestia.AspNetCore.Geo content files to project" />
     <ItemGroup>
-      <SourceScriptFiles Include="$(MSBuildThisFileDirectory)..\contentFiles\any\any\wwwroot\lib\ryanjuan-hestia-aspnetcore-geo\*.js" />
+      <SourceScriptFiles Include="$(MSBuildThisFileDirectory)..\resource\**\*.*" />
     </ItemGroup>
-    <Copy SourceFiles="@(SourceScriptFiles)" DestinationFolder="$(ProjectDir)\wwwroot\lib\ryanjuan-hestia-aspnetcore-geo\" SkipUnchangedFiles="true" OverwriteReadOnlyFiles="true" />
+    <Copy SourceFiles="@(SourceScriptFiles)" DestinationFiles="@(SourceScriptFiles -> '$(MSBuildProjectDirectory)\%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" OverwriteReadOnlyFiles="true" />
   </Target>
 </Project>

@@ -3,4 +3,4 @@ lib/
 wwwroot/
 
 # Include content file for package
-!contentFiles/**
+!resource/**

@@ -2,4 +2,4 @@
 lib/
 
 # Include content file for package
-!contentFiles/**
+!resource/**
