@@ -2,14 +2,14 @@
 <package>
   <metadata>
     <id>RyanJuan.Hestia.AspNetCore</id>
-    <version>1.0.0-beta00732</version>
+    <version>1.0.0-beta00733</version>
     <description>Hestia.AspNetCore beta test.</description>
     <authors>RyanJuan</authors>
     <owners>RyanJuan</owners>
     <projectUrl>https://github.com/ryans610/Hestia</projectUrl>
     <license type="expression">MIT</license>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <releaseNotes></releaseNotes>
+    <releaseNotes>Add radio button support for jquery validation and bootstrap 5 adapter.</releaseNotes>
     <copyright>Copyright ©2022 RyanJuan</copyright>
     <language>en</language>
     <dependencies>

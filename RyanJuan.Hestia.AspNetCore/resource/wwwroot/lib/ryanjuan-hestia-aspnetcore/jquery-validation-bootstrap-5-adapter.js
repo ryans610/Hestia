@@ -12,11 +12,19 @@ document.addEventListener("DOMContentLoaded", function () {
             errorClass: "",
             validClass: "",
             highlight: function (element, errorClass, validClass) {
-                window.jQuery(element).addClass("is-invalid").removeClass("is-valid");
+                const elementDOM = window.jQuery(element);
+                elementDOM.addClass("is-invalid").removeClass("is-valid");
+                if (elementDOM.is(":radio")) {
+                    elementDOM.parent().addClass("is-invalid").removeClass("is-valid");
+                }
                 window.jQuery(element.form).find(`[data-valmsg-for=${element.id}]`).addClass("invalid-feedback");
             },
             unhighlight: function (element, errorClass, validClass) {
-                window.jQuery(element).addClass("is-valid").removeClass("is-invalid");
+                const elementDOM = window.jQuery(element);
+                elementDOM.addClass("is-valid").removeClass("is-invalid");
+                if (elementDOM.is(":radio")) {
+                    elementDOM.parent().addClass("is-valid").removeClass("is-invalid");
+                }
                 window.jQuery(element.form).find(`[data-valmsg-for=${element.id}]`).removeClass("invalid-feedback");
             },
         });

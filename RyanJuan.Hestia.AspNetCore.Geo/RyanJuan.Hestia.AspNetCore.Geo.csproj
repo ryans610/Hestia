@@ -4,7 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <Version>1.0.0-beta00728</Version>
+    <Version>1.0.0-beta00729</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -20,7 +20,7 @@
 
   <ItemGroup>
     <PackageReference Include="RyanJuan.Hestia" Version="1.0.0-beta30716" />
-    <PackageReference Include="RyanJuan.Hestia.AspNetCore" Version="1.0.0-beta00732" />
+    <PackageReference Include="RyanJuan.Hestia.AspNetCore" Version="1.0.0-beta00733" />
   </ItemGroup>
 
 </Project>
