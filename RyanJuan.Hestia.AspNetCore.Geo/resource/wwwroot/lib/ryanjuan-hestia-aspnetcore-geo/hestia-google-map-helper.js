@@ -29,7 +29,6 @@ class HestiaGoogleMapHelper {
         this.#callback = callback;
         window.__hestiaGoogleMapHelperInitializeCallback__ = function () {
             HestiaGoogleMapHelper.initialize();
-            //HestiaGoogleMapHelper._callback();
         };
         const script = document.createElement("script");
         script.async = true;
@@ -53,9 +52,9 @@ class HestiaGoogleMapHelper {
                 super();
                 this.#map = map;
                 this.#position = position;
-                content.classList.add("popup-bubble");
+                content.classList.add("hestia-geo-popup-bubble");
                 this.#containerDiv = document.createElement("div");
-                this.#containerDiv.classList.add("popup-container");
+                this.#containerDiv.classList.add("hestia-geo-popup-container");
                 this.#containerDiv.appendChild(content);
                 HestiaGoogleMapHelper.PopUp.preventMapHitsAndGesturesFrom(this.#containerDiv);
                 this.#direction = direction;
@@ -82,7 +81,7 @@ class HestiaGoogleMapHelper {
             /** Called each frame when the popup needs to draw itself. */
             draw() {
                 const projection = this.getProjection();
-                if (Common.isNullOrUndefined(projection)) {
+                if (HestiaCommon.isNullOrUndefined(projection)) {
                     return;
                 }
                 const divPosition = projection.fromLatLngToDivPixel(this.#position);
@@ -121,7 +120,7 @@ class HestiaGoogleMapHelper {
         };
         const popupStyle = document.createElement("style");
         popupStyle.textContent = `
-            .popup-bubble {
+            .hestia-geo-popup-bubble {
                 position: absolute;
                 top: 0;
                 left: 0;
@@ -135,13 +134,35 @@ class HestiaGoogleMapHelper {
                 overflow-y: auto;
                 box-shadow: 0px 2px 10px 1px rgba(0, 0, 0, 0.5);
             }
-            .popup-container {
+            .hestia-geo-popup-container {
                 cursor: auto;
                 height: 0;
                 position: absolute;
                 width: 200px;
             }`;
         document.head.appendChild(popupStyle);
+
+        const controlButtonStyle = document.createElement("style");
+        controlButtonStyle.textContent = `
+            .hestia-geo-panel-control-button > div {
+                margin: 10px;
+                background-color: white;
+            }
+            .hestia-geo-panel-control-button-inner {
+                display: inline-block;
+                border: none;
+                background-color: white;
+                color: rgb(86, 86, 86);
+                font-size: 18px;
+                line-height: normal;
+                height: 40px;
+                box-shadow: rgba(0, 0, 0, 0.3) 0 1px 4px -1px;
+            }
+            .hestia-geo-panel-control-button-inner:hover {
+                background-color: rgb(235, 235, 235);
+                color: black;
+            }`;
+        document.head.appendChild(controlButtonStyle);
 
         HestiaGoogleMapHelper.#initializers.forEach(x => x());
 
@@ -236,5 +257,45 @@ class HestiaGoogleMapHelper {
                 newMapId = "hybrid";
         }
         map.setMapTypeId(newMapId);
+    }
+
+    static ControlButtonPanel = class {
+        constructor(map) {
+            this.#map = map;
+            const container = document.createElement("div");
+            container.style.marginLeft = "-10px";
+            this.#controlButtonPanelContainer = container;
+            const panel = document.createElement("div");
+            panel.classList.add("hestia-geo-panel-control-button");
+            panel.appendChild(this.#controlButtonPanelContainer);
+            this.#controlButtonPanel = panel;
+            map.controls[google.maps.ControlPosition.TOP_LEFT].push(panel);
+        }
+
+        #map = undefined;
+        #controlButtonPanel = undefined;
+        #controlButtonPanelContainer = undefined;
+
+        add(...controlButtons) {
+            for (const setting of controlButtons) {
+                const button = document.createElement("button");
+                button.classList.add("hestia-geo-panel-control-button-inner");
+                button.innerText = setting.text;
+                button.addEventListener("click", setting.callback);
+                this.#controlButtonPanelContainer.appendChild(button);
+            }
+        }
+    }
+    static ControlButtonSetting = class {
+        constructor(text, callback) {
+            this.#text = text;
+            this.#callback = callback;
+        }
+
+        #text = undefined;
+        #callback = undefined;
+
+        get text() { return this.#text; }
+        get callback() { return this.#callback; }
     }
 }

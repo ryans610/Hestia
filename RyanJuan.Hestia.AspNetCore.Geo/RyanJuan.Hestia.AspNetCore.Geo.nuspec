@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>RyanJuan.Hestia.AspNetCore.Geo</id>
-    <version>1.0.0-beta00729</version>
+    <version>1.0.0-beta00801</version>
     <description>Hestia.AspNetCore.Geo beta test.</description>
     <authors>RyanJuan</authors>
     <owners>RyanJuan</owners>
