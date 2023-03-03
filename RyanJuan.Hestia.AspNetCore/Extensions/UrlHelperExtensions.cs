@@ -11,6 +11,7 @@ public static class UrlHelperExtensions
         object? values = null,
         string? protocol = null)
     {
+        ArgumentNullException.ThrowIfNull(urlHelper);
         return urlHelper.Action(
             action,
             controller,

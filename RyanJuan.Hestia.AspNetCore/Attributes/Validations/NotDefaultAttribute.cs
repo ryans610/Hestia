@@ -6,10 +6,15 @@ namespace RyanJuan.Hestia.AspNetCore.Attributes.Validations;
 /// <summary>
 /// Check if the value is not the default value of the type.
 /// </summary>
+[AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = false)]
 public class NotDefaultAttribute : ValidationAttribute
 {
     /// <inheritdoc cref="NotDefaultAttribute"/>
-    public NotDefaultAttribute() { }
+    public NotDefaultAttribute()
+        : base(() => "The value for {0} must not be the default value of the type.")
+    {
+
+    }
 
     /// <inheritdoc />
     protected override ValidationResult IsValid(object? value, ValidationContext validationContext)
@@ -26,7 +31,7 @@ public class NotDefaultAttribute : ValidationAttribute
     // TODO: Change to RyanJuan.Hestia.NonGeneric.UnknownTypeEqualityComparer using InternalsVisibleTo
     private sealed class UnknownTypeEqualityComparer : IEqualityComparer
     {
-        public static UnknownTypeEqualityComparer Default { get; } = new ();
+        public static UnknownTypeEqualityComparer Default { get; } = new();
 
         private UnknownTypeEqualityComparer() { }
 

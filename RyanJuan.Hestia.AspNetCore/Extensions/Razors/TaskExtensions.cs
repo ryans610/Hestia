@@ -2,7 +2,10 @@
 
 namespace RyanJuan.Hestia.AspNetCore.Extensions.Razors;
 
-public static partial class HestiaAspNetCoreTaskExtensions
+/// <summary>
+/// 
+/// </summary>
+public static class HestiaAspNetCoreTaskExtensions
 {
     /// <summary>
     /// For easily using await Task in razor.
@@ -11,6 +14,7 @@ public static partial class HestiaAspNetCoreTaskExtensions
     /// <returns></returns>
     public static async Task<HtmlString> RenderNothing(this Task task)
     {
+        ArgumentNullException.ThrowIfNull(task);
         await task;
         return HtmlString.Empty;
     }

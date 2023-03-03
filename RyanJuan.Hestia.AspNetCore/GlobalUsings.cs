@@ -7,3 +7,4 @@ global using System.Threading;
 global using System.Threading.Tasks;
 
 global using RyanJuan.Hestia;
+global using RyanJuan.Hestia.AspNetCore.Resources;
