@@ -1,26 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
+namespace RyanJuan.Hestia;
 
-namespace RyanJuan.Hestia
+public static partial class HestiaCollections
 {
-    public static partial class HestiaCollections
-    {
 #if ZH_HANT
 #else
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <typeparam name="TSource"></typeparam>
-        /// <param name="source"></param>
-        /// <returns></returns>
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="TSource"></typeparam>
+    /// <param name="source"></param>
+    /// <returns></returns>
 #endif
-        public static ReadOnlyCollection<TSource> ToReadOnlyCollection<TSource>(
-            this IEnumerable<TSource> source)
+    public static ReadOnlyCollection<TSource> ToReadOnlyCollection<TSource>(
+        this IEnumerable<TSource> source)
+    {
+        Error.ThrowIfArgumentNull(nameof(source), source);
+        return source.ToList().AsReadOnly();
+    }
+
+    internal static ReadOnlyCollection<TSource> AsReadOnlyCollection<TSource>(
+        this IEnumerable<TSource> source)
+    {
+        if (source is ReadOnlyCollection<TSource> readOnlyCollection)
         {
-            Error.ThrowIfArgumentNull(nameof(source), source);
-            return source.ToList().AsReadOnly();
+            return readOnlyCollection;
         }
+
+        if (source is not IList<TSource> list)
+        {
+            list = source.ToList();
+        }
+
+        return new ReadOnlyCollection<TSource>(list);
     }
 }

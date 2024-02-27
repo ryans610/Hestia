@@ -1,15 +1,11 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿namespace RyanJuan.Hestia;
 
-namespace RyanJuan.Hestia
+/// <summary>
+/// 
+/// </summary>
+public static partial class HestiaTask
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    public static partial class HestiaTask
-    {
 #if ZH_HANT
 #else
 #endif
-    }
 }

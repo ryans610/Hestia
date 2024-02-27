@@ -1,32 +1,37 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<!--EXTERNAL_PROPERTIES: TargetFramework-->
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netcoreapp3.0;netstandard2.1;netstandard2.0;netcoreapp2.1;net45;net40</TargetFrameworks>
-    <LangVersion>8.0</LangVersion>
-      <Nullable>enable</Nullable>
+    <TargetFrameworks>net6.0;netcoreapp3.1;netstandard2.1;net48;netstandard2.0;netcoreapp2.2;net462;net45;net40</TargetFrameworks>
+    <LangVersion>10.0</LangVersion>
+    <Nullable>enable</Nullable>
     <Configurations>Debug;Release;Release-zh-Hant</Configurations>
     <Version>1.0.0-beta30716</Version>
     <Authors>RyanJuan</Authors>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
-    <WarningsAsErrors />
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+      <_Parameter1>RyanJuan.Hestia.AspNetCore</_Parameter1>
+    </AssemblyAttribute>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+      <_Parameter1>RyanJuan.Hestia.AspNetCore.Geo</_Parameter1>
+    </AssemblyAttribute>
+  </ItemGroup>
+
+  <PropertyGroup Condition="$(Configuration)=='Debug'">
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="$(Configuration)=='Release'">
     <GenerateDependencyFile>false</GenerateDependencyFile>
     <DebugType>embedded</DebugType>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release-zh-Hant|AnyCPU'">
-    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
-    <WarningsAsErrors />
-    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
+  <PropertyGroup Condition="$(Configuration)=='Release-zh-Hant'">
+    <DefineConstants>$(DefineConstants);RELEASE;ZH_HANT</DefineConstants>
     <GenerateDependencyFile>false</GenerateDependencyFile>
     <DebugType>embedded</DebugType>
-    <DefineConstants>TRACE;ZH_HANT</DefineConstants>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
   </PropertyGroup>
 
 </Project>

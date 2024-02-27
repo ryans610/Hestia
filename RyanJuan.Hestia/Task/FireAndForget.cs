@@ -1,31 +1,27 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿namespace RyanJuan.Hestia;
 
-namespace RyanJuan.Hestia
+public static partial class HestiaTask
 {
-    public static partial class HestiaTask
-    {
 #if !NET40
 #if ZH_HANT
 #else
 #endif
-        public static async void FireAndForget(
-            this Task task,
-            Action<Exception>? exceptionHandler = null)
+    public static async void FireAndForget(
+        this Task task,
+        Action<Exception>? exceptionHandler = null)
+    {
+        Error.ThrowIfArgumentNull(nameof(task), task);
+        try
         {
-            Error.ThrowIfArgumentNull(nameof(task), task);
-            try
+            await task;
+        }
+        catch (Exception exception)
+        {
+            if (exceptionHandler is not null)
             {
-                await task;
-            }
-            catch (Exception exception)
-            {
-                if (exceptionHandler is { })
-                {
-                    exceptionHandler(exception);
-                }
+                exceptionHandler.Invoke(exception);
             }
         }
-#endif
     }
+#endif
 }

@@ -1,75 +1,148 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 
-namespace RyanJuan.Hestia.NonGeneric
+namespace RyanJuan.Hestia.NonGeneric;
+
+public static partial class HestiaNonGenericCollections
 {
-    public static partial class HestiaNonGenericCollections
-    {
 #if ZH_HANT
 #else
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="source"></param>
-        /// <returns></returns>
 #endif
-        public static int Count(
-            this IEnumerable source)
+    [PublicAPI]
+    public static int Count(
+        this IEnumerable source)
+    {
+        Error.ThrowIfArgumentNull(nameof(source), source);
+        if (source is ICollection collection)
         {
-            Error.ThrowIfArgumentNull(nameof(source), source);
-            if (source is ICollection collection)
-            {
-                return collection.Count;
-            }
+            return collection.Count;
+        }
+        IEnumerator? iterator = null;
+        try
+        {
             int count = 0;
-            var iterator = source.GetEnumerator();
+            iterator = source.GetEnumerator();
             checked
             {
                 while (iterator.MoveNext())
                 {
                     count += 1;
                 }
-            }
-            if (iterator is IDisposable disposable)
-            {
-                disposable.Dispose();
             }
             return count;
         }
-
-#if ZH_HANT
-#else
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="source"></param>
-        /// <returns></returns>
-#endif
-        public static long LongCount(
-            IEnumerable source)
+        finally
         {
-            if (source is null)
-            {
-                throw Error.ArgumentNull(nameof(source));
-            }
-            if (source is ICollection collection)
-            {
-                return collection.Count;
-            }
-            long count = 0;
-            var iterator = source.GetEnumerator();
-            checked
-            {
-                while (iterator.MoveNext())
-                {
-                    count += 1;
-                }
-            }
             if (iterator is IDisposable disposable)
             {
                 disposable.Dispose();
             }
+        }
+    }
+
+#if ZH_HANT
+#else
+#endif
+    [PublicAPI]
+    public static int Count(
+        this IEnumerable source,
+        Func<object?, bool> predicate)
+    {
+        Error.ThrowIfArgumentNull(nameof(source), source);
+        Error.ThrowIfArgumentNull(nameof(predicate), predicate);
+        IEnumerator? iterator = null;
+        try
+        {
+            iterator = source.GetEnumerator();
+            int count = 0;
+            checked
+            {
+                while (iterator.MoveNext())
+                {
+                    if (predicate.Invoke(iterator.Current))
+                    {
+                        count += 1;
+                    }
+                }
+            }
             return count;
+        }
+        finally
+        {
+            if (iterator is IDisposable disposable)
+            {
+                disposable.Dispose();
+            }
+        }
+    }
+
+#if ZH_HANT
+#else
+#endif
+    [PublicAPI]
+    public static long LongCount(
+        IEnumerable source)
+    {
+        Error.ThrowIfArgumentNull(nameof(source), source);
+        if (source is ICollection collection)
+        {
+            return collection.Count;
+        }
+        IEnumerator? iterator = null;
+        try
+        {
+            iterator = source.GetEnumerator();
+            long count = 0;
+            checked
+            {
+                while (iterator.MoveNext())
+                {
+                    count += 1L;
+                }
+            }
+            return count;
+        }
+        finally
+        {
+            if (iterator is IDisposable disposable)
+            {
+                disposable.Dispose();
+            }
+        }
+    }
+
+#if ZH_HANT
+#else
+#endif
+    [PublicAPI]
+    public static long LongCount(
+        this IEnumerable source,
+        Func<object?, bool> predicate)
+    {
+        Error.ThrowIfArgumentNull(nameof(source), source);
+        Error.ThrowIfArgumentNull(nameof(predicate), predicate);
+        IEnumerator? iterator = null;
+        try
+        {
+            iterator = source.GetEnumerator();
+            long count = 0;
+            checked
+            {
+                while (iterator.MoveNext())
+                {
+                    if (predicate.Invoke(iterator.Current))
+                    {
+                        count += 1L;
+                    }
+                }
+            }
+            return count;
+        }
+        finally
+        {
+            if (iterator is IDisposable disposable)
+            {
+                disposable.Dispose();
+            }
         }
     }
 }

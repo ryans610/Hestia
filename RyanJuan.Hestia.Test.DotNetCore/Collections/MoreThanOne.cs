@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +12,11 @@ namespace RyanJuan.Hestia.Test.DotNetCore.Collections
     [TestClass]
     public class TestMoreThanOne
     {
+        [TestMethod]
+        public void Foo()
+        {
+            var r = new[] { 1, 2, 3, 4, 5, 6 }.Batch(2).Skip(2).ToArray();
+        }
         [TestMethod]
         public void TestNull()
         {

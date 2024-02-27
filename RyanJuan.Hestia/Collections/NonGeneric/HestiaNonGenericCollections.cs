@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 
-namespace RyanJuan.Hestia.NonGeneric
+namespace RyanJuan.Hestia.NonGeneric;
+
+/// <summary>
+/// 
+/// </summary>
+public static partial class HestiaNonGenericCollections
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    public static partial class HestiaNonGenericCollections
-    {
 #if ZH_HANT
 #else
 #endif
-    }
 }

@@ -1,19 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿namespace RyanJuan.Hestia;
 
-namespace RyanJuan.Hestia
+public static partial class HestiaCollections
 {
-    public static partial class HestiaCollections
-    {
 #if ZH_HANT
 #else
 #endif
-        public static bool MoreThanOne<TSource>(
-            this IEnumerable<TSource> source)
-        {
-            Error.ThrowIfArgumentNull(nameof(source), source);
-            return MoreThanInternal(source, 1);
-        }
+    public static bool MoreThanOne<TSource>(
+        this IEnumerable<TSource> source)
+    {
+        Error.ThrowIfArgumentNull(nameof(source), source);
+        return MoreThanInternal(source, 1);
     }
 }

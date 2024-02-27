@@ -1,39 +1,38 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 
-namespace RyanJuan.Hestia.NonGeneric
+namespace RyanJuan.Hestia.NonGeneric;
+
+public static partial class HestiaNonGenericCollections
 {
-    public static partial class HestiaNonGenericCollections
-    {
 #if ZH_HANT
 #else
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="source"></param>
-        /// <param name="predicate"></param>
-        /// <returns></returns>
 #endif
-        public static bool All(
-            this IEnumerable source,
-            Func<object?, bool> predicate)
+    [PublicAPI]
+    public static bool All(
+        this IEnumerable source,
+        Func<object?, bool> predicate)
+    {
+        Error.ThrowIfArgumentNull(nameof(source), source);
+        Error.ThrowIfArgumentNull(nameof(predicate), predicate);
+        IEnumerator? iterator = null;
+        try
         {
-            Error.ThrowIfArgumentNull(nameof(source), source);
-            var result = true;
-            var iterator = source.GetEnumerator();
+            iterator = source.GetEnumerator();
             while (iterator.MoveNext())
             {
-                if (!predicate(iterator.Current))
+                if (!predicate.Invoke(iterator.Current))
                 {
-                    result = false;
-                    break;
+                    return false;
                 }
             }
+        }
+        finally
+        {
             if (iterator is IDisposable disposable)
             {
                 disposable.Dispose();
             }
-            return result;
         }
+        return true;
     }
 }

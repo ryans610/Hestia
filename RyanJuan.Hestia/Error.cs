@@ -1,67 +1,69 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿namespace RyanJuan.Hestia;
 
-namespace RyanJuan.Hestia
+internal class Error
 {
-    internal class Error
-    {
-        internal const string ArgumentSmallerThan =
+    internal const string ArgumentSmallerThan =
 #if ZH_HANT
-            "{0} 必須小於或等於 {1}。";
+        "{0} 必須大於或等於 {1}。";
 #else
-            "{0} must be greater than or equal to {1}.";
+        "{0} must be greater than or equal to {1}.";
 #endif
 
-        internal static ArgumentNullException ArgumentNull(
-            string name)
-        {
-            return new ArgumentNullException(name);
-        }
+    internal const string ArgumentBiggerThanOrEqualTo =
+#if ZH_HANT
+        "{0} 必須小於 {1}。";
+#else
+        "{0} must be less than {1}.";
+#endif
 
-        internal static void ThrowIfArgumentNull<TValue>(
-            string name,
-            TValue value)
-        {
-            if (value is null)
-            {
-                throw new ArgumentNullException(name);
-            }
-        }
+    internal static ArgumentNullException ArgumentNull(
+        string name)
+    {
+        return new ArgumentNullException(name);
+    }
 
-        internal static ArgumentOutOfRangeException ArgumentOutOfRange(
-            string name,
-            string message,
-            object? actualValue = null)
+    internal static void ThrowIfArgumentNull<TValue>(
+        string name,
+        [NoEnumeration] TValue value)
+    {
+        if (value is null)
         {
-            if (actualValue is null)
-            {
-                return new ArgumentOutOfRangeException(name, message);
-            }
-            else
-            {
-                return new ArgumentOutOfRangeException(name, actualValue, message);
-            }
+            throw new ArgumentNullException(name);
         }
+    }
 
-        internal static void ThrowIfArgumentSmallerThanZero(
-            string name,
-            int value)
+    internal static ArgumentOutOfRangeException ArgumentOutOfRange(
+        string name,
+        string message,
+        object? actualValue = null)
+    {
+        if (actualValue is null)
         {
-            if (value < 0)
-            {
-                throw ArgumentOutOfRange(
-                    name,
-                    string.Format(ArgumentSmallerThan, name, 0),
-                    value);
-            }
+            return new ArgumentOutOfRangeException(name, message);
         }
+        else
+        {
+            return new ArgumentOutOfRangeException(name, actualValue, message);
+        }
+    }
 
-        internal static ArgumentException Argument(
-            string name,
-            string message)
+    internal static void ThrowIfArgumentSmallerThanZero(
+        string name,
+        int value)
+    {
+        if (value < 0)
         {
-            return new ArgumentException(message, name);
+            throw ArgumentOutOfRange(
+                name,
+                string.Format(ArgumentSmallerThan, name, 0),
+                value);
         }
+    }
+
+    internal static ArgumentException Argument(
+        string name,
+        string message)
+    {
+        return new ArgumentException(message, name);
     }
 }

@@ -1,58 +1,52 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 
-namespace RyanJuan.Hestia.NonGeneric
+using RyanJuan.Hestia.Resources;
+
+namespace RyanJuan.Hestia.NonGeneric;
+
+public static partial class HestiaNonGenericCollections
 {
-    public static partial class HestiaNonGenericCollections
-    {
 #if ZH_HANT
 #else
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="source"></param>
-        /// <param name="value"></param>
-        /// <param name="comparer"></param>
-        /// <returns></returns>
 #endif
-        public static bool Contains(
-            this IEnumerable source,
-            object value,
-            IEqualityComparer? comparer)
+    [PublicAPI]
+    public static bool Contains(
+        this IEnumerable source,
+        object value,
+        IEqualityComparer? comparer)
+    {
+        Error.ThrowIfArgumentNull(nameof(source), source);
+        comparer ??= UnknownTypeEqualityComparer.Default;
+        IEnumerator? iterator = null;
+        try
         {
-            Error.ThrowIfArgumentNull(nameof(source), source);
-            comparer ??= UnknownTypeEqualityComparer.Default;
-            var iterator = source.GetEnumerator();
-            var result = false;
+            iterator = source.GetEnumerator();
             while (iterator.MoveNext())
             {
                 if (comparer.Equals(iterator.Current, value))
                 {
-                    result = true;
-                    break;
+                    return true;
                 }
             }
+        }
+        finally
+        {
             if (iterator is IDisposable disposable)
             {
                 disposable.Dispose();
             }
-            return result;
         }
+        return false;
+    }
 
 #if ZH_HANT
 #else
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="source"></param>
-        /// <param name="value"></param>
-        /// <returns></returns>
 #endif
-        public static bool Contains(
-            this IEnumerable source,
-            object value)
-        {
-            return source.Contains(value, null);
-        }
+    [PublicAPI]
+    public static bool Contains(
+        this IEnumerable source,
+        object value)
+    {
+        return source.Contains(value, null);
     }
 }

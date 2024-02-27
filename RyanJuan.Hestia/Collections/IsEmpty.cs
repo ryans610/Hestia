@@ -1,47 +1,43 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections;
 
-namespace RyanJuan.Hestia
+namespace RyanJuan.Hestia;
+
+public static partial class HestiaCollections
 {
-    public static partial class HestiaCollections
-    {
 #if ZH_HANT
 #else
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <typeparam name="TSource"></typeparam>
-        /// <param name="source"></param>
-        /// <returns></returns>
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="TSource"></typeparam>
+    /// <param name="source"></param>
+    /// <returns></returns>
 #endif
-        public static bool IsEmpty<TSource>(
-            this IEnumerable<TSource> source)
-        {
-            Error.ThrowIfArgumentNull(nameof(source), source);
-            return IsEmptyInternal(source);
-        }
+    public static bool IsEmpty<TSource>(
+        this IEnumerable<TSource> source)
+    {
+        Error.ThrowIfArgumentNull(nameof(source), source);
+        return IsEmptyInternal(source);
+    }
 
-        internal static bool IsEmptyInternal<TSource>(
-            IEnumerable<TSource> source)
+    internal static bool IsEmptyInternal<TSource>(
+        IEnumerable<TSource> source)
+    {
+        switch (source)
         {
-            if (source is ICollection<TSource> collectionT)
-            {
+            case ICollection<TSource> collectionT:
                 return collectionT.Count == 0;
-            }
 #if !NET40
-            if (source is IReadOnlyCollection<TSource> readOnlyCollectionT)
-            {
+            case IReadOnlyCollection<TSource> readOnlyCollectionT:
                 return readOnlyCollectionT.Count == 0;
-            }
 #endif
-            if (source is ICollection collection)
-            {
+            case ICollection collection:
                 return collection.Count == 0;
-            }
-            using var iterator = source.GetEnumerator();
-            return !iterator.MoveNext();
+            default:
+                {
+                    using var iterator = source.GetEnumerator();
+                    return !iterator.MoveNext();
+                }
         }
     }
 }

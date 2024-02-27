@@ -1,14 +1,11 @@
-﻿using System;
+﻿namespace RyanJuan.Hestia;
 
-namespace RyanJuan.Hestia
+/// <summary>
+/// 
+/// </summary>
+public static partial class HestiaString
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    public static partial class HestiaString
-    {
 #if ZH_HANT
 #else
 #endif
-    }
 }

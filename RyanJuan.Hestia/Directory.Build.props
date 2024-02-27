@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <PropertyGroup Condition="$(Configuration)=='Release'">
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <OutputPath>lib\Release\$(TargetFramework)\</OutputPath>
+    <DocumentationFile>lib\Release\$(TargetFramework)\RyanJuan.Hestia.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="$(Configuration)=='Release-zh-Hant'">
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <OutputPath>lib\Release\$(TargetFramework)\zh-Hant\</OutputPath>
+    <DocumentationFile>lib\Release\$(TargetFramework)\zh-Hant\RyanJuan.Hestia.xml</DocumentationFile>
+  </PropertyGroup>
+</Project>

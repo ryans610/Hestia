@@ -1,64 +1,64 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 
-namespace RyanJuan.Hestia.NonGeneric
+namespace RyanJuan.Hestia.NonGeneric;
+
+public static partial class HestiaNonGenericCollections
 {
-    public static partial class HestiaNonGenericCollections
-    {
 #if ZH_HANT
 #else
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="source"></param>
-        /// <returns></returns>
 #endif
-        public static bool Any(
-            this IEnumerable source)
+    [PublicAPI]
+    public static bool Any(
+        this IEnumerable source)
+    {
+        Error.ThrowIfArgumentNull(nameof(source), source);
+        if (source is ICollection collection)
         {
-            Error.ThrowIfArgumentNull(nameof(source), source);
-            if (source is ICollection collection)
-            {
-                return collection.Count != 0;
-            }
-            var iterator = source.GetEnumerator();
-            var result = iterator.MoveNext();
+            return collection.Count != 0;
+        }
+        IEnumerator? iterator = null;
+        try
+        {
+            iterator = source.GetEnumerator();
+            return iterator.MoveNext();
+        }
+        finally
+        {
             if (iterator is IDisposable disposable)
             {
                 disposable.Dispose();
             }
-            return result;
         }
+    }
 
 #if ZH_HANT
 #else
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="source"></param>
-        /// <param name="predicate"></param>
-        /// <returns></returns>
 #endif
-        public static bool Any(
-            this IEnumerable source,
-            Func<object?, bool> predicate)
+    [PublicAPI]
+    public static bool Any(
+        this IEnumerable source,
+        Func<object?, bool> predicate)
+    {
+        Error.ThrowIfArgumentNull(nameof(source), source);
+        IEnumerator? iterator = null;
+        try
         {
-            Error.ThrowIfArgumentNull(nameof(source), source);
-            var result = false;
-            var iterator = source.GetEnumerator();
+            iterator = source.GetEnumerator();
             while (iterator.MoveNext())
             {
-                if (predicate(iterator.Current))
+                if (predicate.Invoke(iterator.Current))
                 {
-                    result = true;
-                    break;
+                    return true;
                 }
             }
+        }
+        finally
+        {
             if (iterator is IDisposable disposable)
             {
                 disposable.Dispose();
             }
-            return result;
         }
+        return false;
     }
 }
