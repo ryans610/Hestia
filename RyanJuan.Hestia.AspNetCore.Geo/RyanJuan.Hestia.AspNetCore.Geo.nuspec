@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>RyanJuan.Hestia.AspNetCore.Geo</id>
-    <version>1.0.0-beta00728</version>
+    <version>1.0.0-beta00801</version>
     <description>Hestia.AspNetCore.Geo beta test.</description>
     <authors>RyanJuan</authors>
     <owners>RyanJuan</owners>
@@ -15,7 +15,7 @@
     <dependencies>
       <group targetFramework="net6.0">
         <dependency id="RyanJuan.Hestia" version="1.0.0-beta30716" />
-        <dependency id="RyanJuan.Hestia.AspNetCore" version="1.0.0-beta00732" />
+        <dependency id="RyanJuan.Hestia.AspNetCore" version="1.0.0-beta00733" />
       </group>
     </dependencies>
     <frameworkReferences>

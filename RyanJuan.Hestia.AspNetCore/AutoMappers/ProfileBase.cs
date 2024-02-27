@@ -25,4 +25,19 @@ public abstract class ProfileBase : Profile
                 return context.Mapper.Map<TDestination>(intermediate);
             });
     }
+
+    /// <summary>
+    /// Create a mapping configuration from the <typeparamref name="TSource"/> type
+    /// to the <typeparamref name="TIntermediate"/> type
+    /// and then to the <typeparamref name="TDestination"/> type,
+    /// and another mapping configuration with reverse order.
+    /// </summary>
+    /// <typeparam name="TSource"></typeparam>
+    /// <typeparam name="TIntermediate"></typeparam>
+    /// <typeparam name="TDestination"></typeparam>
+    public void CreateChainMapAndReverse<TSource, TIntermediate, TDestination>()
+    {
+        CreateChainMap<TSource, TIntermediate, TDestination>();
+        CreateChainMap<TDestination, TIntermediate, TSource>();
+    }
 }
