@@ -1,11 +1,11 @@
-﻿$name = "RyanJuan.Hestia"
+$name = "RyanJuan.Hestia"
 
 Remove-Item -LiteralPath ".\obj" -Force -Recurse
 Remove-Item -LiteralPath ".\lib" -Force -Recurse
 
 $csproj = ".\$name.csproj"
 dotnet build $csproj -c Release
-dotnet build $csproj -c Release-zh-Hant
+#dotnet build $csproj -c Release-zh-Hant
 
 $xml = [Xml] (Get-Content $csproj)
 $version = $xml.Project.PropertyGroup.Version

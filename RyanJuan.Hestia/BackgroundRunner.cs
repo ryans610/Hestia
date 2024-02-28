@@ -1,4 +1,4 @@
-﻿namespace RyanJuan.Hestia;
+namespace RyanJuan.Hestia;
 
 #if !NET40
 /// <summary>
@@ -11,6 +11,7 @@ public static class BackgroundRunner
     /// </summary>
     /// <param name="action"></param>
     /// <param name="exceptionHandler"></param>
+    [PublicAPI]
     public static async void Run(
         Action action,
         Action<Exception?>? exceptionHandler = null)
@@ -22,7 +23,10 @@ public static class BackgroundRunner
         }
         catch (Exception ex)
         {
+            // ReSharper disable once UseNullPropagation
+#pragma warning disable IDE0031
             if (exceptionHandler is not null)
+#pragma warning restore IDE0031
             {
                 exceptionHandler.Invoke(ex);
             }
@@ -34,6 +38,7 @@ public static class BackgroundRunner
     /// </summary>
     /// <param name="function"></param>
     /// <param name="exceptionHandler"></param>
+    [PublicAPI]
     public static async void Run(
         Func<Task> function,
         Action<Exception?>? exceptionHandler = null)
@@ -45,7 +50,10 @@ public static class BackgroundRunner
         }
         catch (Exception ex)
         {
+            // ReSharper disable once UseNullPropagation
+#pragma warning disable IDE0031
             if (exceptionHandler is not null)
+#pragma warning restore IDE0031
             {
                 exceptionHandler.Invoke(ex);
             }
@@ -58,6 +66,7 @@ public static class BackgroundRunner
     /// <typeparam name="TResult"></typeparam>
     /// <param name="function"></param>
     /// <param name="exceptionHandler"></param>
+    [PublicAPI]
     public static async void Run<TResult>(
         Func<Task<TResult>> function,
         Action<Exception?>? exceptionHandler = null)
@@ -69,7 +78,10 @@ public static class BackgroundRunner
         }
         catch (Exception ex)
         {
+            // ReSharper disable once UseNullPropagation
+#pragma warning disable IDE0031
             if (exceptionHandler is not null)
+#pragma warning restore IDE0031
             {
                 exceptionHandler.Invoke(ex);
             }
@@ -83,6 +95,7 @@ public static class BackgroundRunner
     /// <param name="source"></param>
     /// <param name="action"></param>
     /// <param name="exceptionHandler"></param>
+    [PublicAPI]
     public static void ParallelForAll<TSource>(
         this IEnumerable<TSource> source,
         Action<TSource> action,
@@ -96,7 +109,10 @@ public static class BackgroundRunner
             }
             catch (Exception ex)
             {
+                // ReSharper disable once UseNullPropagation
+#pragma warning disable IDE0031
                 if (exceptionHandler is not null)
+#pragma warning restore IDE0031
                 {
                     exceptionHandler.Invoke(ex);
                 }

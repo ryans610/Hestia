@@ -1,10 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFrameworks>net8.0;net6.0</TargetFrameworks>
+    <LangVersion>12.0</LangVersion>
     <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <Version>1.0.0-beta10301</Version>
+    <Version>1.0.0-beta20228</Version>
+    <Authors>RyanJuan</Authors>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -15,12 +17,26 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+      <_Parameter1>RyanJuan.Hestia.AspNetCore.Taiwan</_Parameter1>
+    </AssemblyAttribute>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+      <_Parameter1>RyanJuan.Hestia.AspNetCore.Geo</_Parameter1>
+    </AssemblyAttribute>
+  </ItemGroup>
+
+  <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="11.0.0" />
-    <PackageReference Include="RyanJuan.Hestia" Version="1.0.0-beta30716" />
+    <PackageReference Include="RyanJuan.Hestia" Version="1.0.0-beta40229" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net8.0' ">
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net6.0' ">
+    <PackageReference Include="AutoMapper" Version="11.0.1" />
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,4 @@
-﻿namespace RyanJuan.Hestia;
+namespace RyanJuan.Hestia;
 
 public static partial class Hestia
 {
@@ -12,15 +12,12 @@ public static partial class Hestia
     /// <param name="provider"></param>
     /// <returns></returns>
 #endif
+    [PublicAPI]
     public static string ToStringOrEmpty(
         this DateTime? datetime,
         string? format,
         IFormatProvider? provider)
     {
-        if (datetime.HasValue)
-        {
-            return datetime.Value.ToString(format, provider);
-        }
-        return string.Empty;
+        return datetime?.ToString(format, provider) ?? string.Empty;
     }
 }

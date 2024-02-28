@@ -1,4 +1,4 @@
-﻿"use strict";
+"use strict";
 
 class HestiaCommon {
     static isUndefined(value) {
@@ -69,5 +69,14 @@ class HestiaCommon {
         } else {
             element.scrollIntoView({ behavior: "smooth" });
         }
+    }
+
+    static countSubString(value, subString) {
+        return (value.match(RegExp(subString, "g")) || []).length;
+    }
+
+    static autoResizeTextArea(element) {
+        const rowCount = HestiaCommon.countSubString(element.value, "\n");
+        element.setAttribute("rows", rowCount + 1)
     }
 }

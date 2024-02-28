@@ -2,17 +2,24 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net6.0;netcoreapp3.1;netstandard2.1;net48;netstandard2.0;netcoreapp2.2;net462;net45;net40</TargetFrameworks>
-    <LangVersion>10.0</LangVersion>
+    <TargetFrameworks>net8.0;net6.0;netcoreapp3.1;netstandard2.1;net48;netstandard2.0;netcoreapp2.2;net462;net45;net40</TargetFrameworks>
+    <LangVersion>12.0</LangVersion>
+    <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <Configurations>Debug;Release;Release-zh-Hant</Configurations>
-    <Version>1.0.0-beta30716</Version>
+    <!--<Configurations>Debug;Release;Release-zh-Hant</Configurations>-->
+    <Version>1.0.0-beta40230</Version>
     <Authors>RyanJuan</Authors>
   </PropertyGroup>
 
   <ItemGroup>
     <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+      <_Parameter1>RyanJuan.Hestia.Taiwan</_Parameter1>
+    </AssemblyAttribute>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
       <_Parameter1>RyanJuan.Hestia.AspNetCore</_Parameter1>
+    </AssemblyAttribute>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+      <_Parameter1>RyanJuan.Hestia.AspNetCore.Taiwan</_Parameter1>
     </AssemblyAttribute>
     <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
       <_Parameter1>RyanJuan.Hestia.AspNetCore.Geo</_Parameter1>
@@ -28,10 +35,10 @@
     <DebugType>embedded</DebugType>
   </PropertyGroup>
 
-  <PropertyGroup Condition="$(Configuration)=='Release-zh-Hant'">
+  <!--<PropertyGroup Condition="$(Configuration)=='Release-zh-Hant'">
     <DefineConstants>$(DefineConstants);RELEASE;ZH_HANT</DefineConstants>
     <GenerateDependencyFile>false</GenerateDependencyFile>
     <DebugType>embedded</DebugType>
-  </PropertyGroup>
+  </PropertyGroup>-->
 
 </Project>

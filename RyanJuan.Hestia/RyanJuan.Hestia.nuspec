@@ -9,10 +9,11 @@
     <projectUrl>https://github.com/ryans610/Hestia</projectUrl>
     <license type="expression">MIT</license>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <releaseNotes></releaseNotes>
-    <copyright>Copyright ©2023 RyanJuan</copyright>
-    <language>en,zh-Hant</language>
+    <releaseNotes>Change GetValueOrDefault to avoid conflict.</releaseNotes>
+    <copyright>Copyright ©2024 RyanJuan</copyright>
+    <language>en</language>
     <dependencies>
+      <group targetFramework="net8.0" />
       <group targetFramework="net6.0" />
       <group targetFramework="netcoreapp3.1" />
       <group targetFramework="netstandard2.1" />

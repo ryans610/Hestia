@@ -1,7 +1,8 @@
-﻿namespace RyanJuan.Hestia;
+namespace RyanJuan.Hestia;
 
 public static partial class ReflectionCenter
 {
+    [PublicAPI]
     public static object? GetValue<T>(T instance, PropertyInfo property)
     {
         Error.ThrowIfArgumentNull(nameof(property), property);

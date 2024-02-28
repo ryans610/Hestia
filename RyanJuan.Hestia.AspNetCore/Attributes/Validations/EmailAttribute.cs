@@ -1,25 +1,21 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 using System.Globalization;
+
+using JetBrains.Annotations;
 
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
 namespace RyanJuan.Hestia.AspNetCore.Attributes.Validations;
 
 /// <inheritdoc cref="EmailAddressAttribute"/>
+[PublicAPI]
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter, AllowMultiple = false)]
-public class EmailAttribute : DataTypeAttribute, IClientModelValidator
+public class EmailAttribute() : DataTypeAttribute(DataType.EmailAddress), IClientModelValidator
 {
     private static readonly EmailAddressAttribute s_validator = new();
 
-    /// <inheritdoc cref="EmailAttribute"/>
-    public EmailAttribute()
-        : base(DataType.EmailAddress)
-    {
-
-    }
-
     /// <summary>
-    /// Whether the empty string is disallow or not.
+    /// Whether the empty string is disallowed or not.
     /// The default value is <see langword="false"/>.
     /// If the value is set to <see langword="true"/>,
     /// the validation behavior of <see cref="EmailAttribute"/>
@@ -34,15 +30,18 @@ public class EmailAttribute : DataTypeAttribute, IClientModelValidator
         {
             return true;
         }
+
         if (value is not string stringValue)
         {
             return false;
         }
+
         if (!DisallowEmptyStrings &&
             stringValue.Length == 0)
         {
             return true;
         }
+
         return s_validator.IsValid(value);
     }
 
@@ -53,6 +52,7 @@ public class EmailAttribute : DataTypeAttribute, IClientModelValidator
         {
             return s_validator.FormatErrorMessage(name);
         }
+
         return string.Format(CultureInfo.CurrentCulture, ErrorMessageString, name);
     }
 

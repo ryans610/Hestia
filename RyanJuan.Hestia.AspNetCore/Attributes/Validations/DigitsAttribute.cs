@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
+
+using JetBrains.Annotations;
 
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
@@ -7,15 +9,12 @@ namespace RyanJuan.Hestia.AspNetCore.Attributes.Validations;
 /// <summary>
 /// 
 /// </summary>
+[PublicAPI]
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter, AllowMultiple = false)]
-public class DigitsAttribute : ValidationAttribute, IClientModelValidator
+public class DigitsAttribute() :
+    ValidationAttribute(() => "All characters in {0} must be digits."),
+    IClientModelValidator
 {
-    /// <inheritdoc cref="DigitsAttribute"/>
-    public DigitsAttribute()
-        : base(() => "All characters in {0} must be digits.")
-    {
-    }
-
     /// <inheritdoc />
     public override bool IsValid(object? value)
     {

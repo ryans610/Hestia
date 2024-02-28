@@ -1,4 +1,4 @@
-﻿namespace RyanJuan.Hestia;
+namespace RyanJuan.Hestia;
 
 public static partial class Hestia
 {
@@ -17,9 +17,10 @@ public static partial class Hestia
     /// <param name="t">The object to wrap.</param>
     /// <returns>An <see cref="IEnumerable{T}"/> wrapping <paramref name="t"/>.</returns>
 #endif
+    [PublicAPI]
     public static IEnumerable<TSource> ToEnumerable<TSource>(
         this TSource t)
     {
-        return new[] { t };
+        return [t];
     }
 }

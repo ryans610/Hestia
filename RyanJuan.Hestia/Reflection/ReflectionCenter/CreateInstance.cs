@@ -2,11 +2,13 @@ namespace RyanJuan.Hestia;
 
 public static partial class ReflectionCenter
 {
+    [PublicAPI]
     public static T CreateInstance<T>()
     {
         return ExpressionConstructor<T>.Factory.Invoke();
     }
 
+    [PublicAPI]
     public static void SetInstanceFactory<T>(Func<T> factory)
     {
         Error.ThrowIfArgumentNull(nameof(factory), factory);

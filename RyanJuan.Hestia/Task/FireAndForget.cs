@@ -1,4 +1,4 @@
-﻿namespace RyanJuan.Hestia;
+namespace RyanJuan.Hestia;
 
 public static partial class HestiaTask
 {
@@ -6,6 +6,7 @@ public static partial class HestiaTask
 #if ZH_HANT
 #else
 #endif
+    [PublicAPI]
     public static async void FireAndForget(
         this Task task,
         Action<Exception>? exceptionHandler = null)
@@ -17,7 +18,10 @@ public static partial class HestiaTask
         }
         catch (Exception exception)
         {
+            // ReSharper disable once UseNullPropagation
+#pragma warning disable IDE0031
             if (exceptionHandler is not null)
+#pragma warning restore IDE0031
             {
                 exceptionHandler.Invoke(exception);
             }

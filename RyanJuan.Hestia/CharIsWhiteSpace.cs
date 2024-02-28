@@ -1,4 +1,4 @@
-﻿namespace RyanJuan.Hestia;
+namespace RyanJuan.Hestia;
 
 public static partial class Hestia
 {
@@ -10,6 +10,7 @@ public static partial class Hestia
     /// <param name="c"></param>
     /// <returns></returns>
 #endif
+    [PublicAPI]
     public static bool IsWhiteSpace(
         this char c)
     {
@@ -24,6 +25,7 @@ public static partial class Hestia
     /// <param name="c"></param>
     /// <returns></returns>
 #endif
+    [PublicAPI]
     public static bool IsNotWhiteSpace(
         this char c)
     {

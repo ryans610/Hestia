@@ -1,4 +1,4 @@
-﻿namespace RyanJuan.Hestia;
+namespace RyanJuan.Hestia;
 
 public static partial class HestiaReflection
 {
@@ -27,6 +27,7 @@ public static partial class HestiaReflection
     /// <paramref name="memberInfo"/> or <paramref name="obj"/> is <see langword="null"/>.
     /// </exception>
 #endif
+    [PublicAPI]
     public static object? GetValue(
         this MemberInfo memberInfo,
         object obj)

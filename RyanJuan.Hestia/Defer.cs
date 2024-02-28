@@ -1,4 +1,4 @@
-﻿namespace RyanJuan.Hestia;
+namespace RyanJuan.Hestia;
 
 #if ZH_HANT
 #else
@@ -16,6 +16,7 @@ public static class Defer
     /// <param name="deferAction"></param>
     /// <returns></returns>
 #endif
+    [PublicAPI]
     public static DeferDisposable Do(Action deferAction)
     {
         Error.ThrowIfArgumentNull(nameof(deferAction), deferAction);

@@ -2,6 +2,7 @@ namespace RyanJuan.Hestia;
 
 public static partial class ReflectionCenter
 {
+    [PublicAPI]
     public static Func<T, object?> GetPropertyGetMethod<T>(
         PropertyInfo property)
     {

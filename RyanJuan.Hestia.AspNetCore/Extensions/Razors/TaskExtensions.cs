@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Html;
+using JetBrains.Annotations;
+
+using Microsoft.AspNetCore.Html;
 
 namespace RyanJuan.Hestia.AspNetCore.Extensions.Razors;
 
@@ -12,6 +14,7 @@ public static class HestiaAspNetCoreTaskExtensions
     /// </summary>
     /// <param name="task"></param>
     /// <returns></returns>
+    [PublicAPI]
     public static async Task<HtmlString> RenderNothing(this Task task)
     {
         ArgumentNullException.ThrowIfNull(task);

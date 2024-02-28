@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<package>
+    <metadata>
+        <id>RyanJuan.Hestia.AspNetCore.Taiwan</id>
+        <version>$version$</version>
+        <description>Hestia.AspNetCore.Taiwan beta test.</description>
+        <authors>RyanJuan</authors>
+        <owners>RyanJuan</owners>
+        <projectUrl>https://github.com/ryans610/Hestia</projectUrl>
+        <license type="expression">MIT</license>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <releaseNotes></releaseNotes>
+        <copyright>Copyright ©2024 RyanJuan</copyright>
+        <language>en</language>
+        <dependencies>
+            <group targetFramework="net8.0">
+                <dependency id="RyanJuan.Hestia" version="1.0.0-beta40229" />
+                <dependency id="RyanJuan.Hestia.AspNetCore" version="1.0.0-beta20228" />
+                <dependency id="RyanJuan.Hestia.Taiwan" version="1.0.0-beta00228" />
+            </group>
+            <group targetFramework="net6.0">
+                <dependency id="RyanJuan.Hestia" version="1.0.0-beta40229" />
+                <dependency id="RyanJuan.Hestia.AspNetCore" version="1.0.0-beta20228" />
+                <dependency id="RyanJuan.Hestia.Taiwan" version="1.0.0-beta00228" />
+            </group>
+        </dependencies>
+        <frameworkReferences>
+            <group targetFramework="net8.0">
+                <frameworkReference name="Microsoft.AspNetCore.App" />
+            </group>
+            <group targetFramework="net6.0">
+                <frameworkReference name="Microsoft.AspNetCore.App" />
+            </group>
+        </frameworkReferences>
+    </metadata>
+    <files>
+        <file src="build\**" target="build" />
+        <file src="build\**" target="buildTransitive" />
+        <file src="lib\**" target="lib" />
+        <file src="wwwroot\**" target="resource\wwwroot" />
+        <file src="resource\**" target="resource" />
+    </files>
+</package>

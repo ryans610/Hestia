@@ -1,9 +1,10 @@
-﻿namespace RyanJuan.Hestia;
+namespace RyanJuan.Hestia;
 
 public static partial class ReflectionCenter
 {
     private static readonly ConcurrentDictionary<TypeStringTuple, PropertyInfo?> s_cachedPropertyInfoByName = new();
 
+    [PublicAPI]
     public static PropertyInfo? GetProperty(
         Type type,
         string name)

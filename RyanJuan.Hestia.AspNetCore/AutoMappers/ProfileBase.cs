@@ -1,4 +1,6 @@
-﻿using AutoMapper;
+using AutoMapper;
+
+using JetBrains.Annotations;
 
 namespace RyanJuan.Hestia.AspNetCore.AutoMappers;
 
@@ -16,6 +18,7 @@ public abstract class ProfileBase : Profile
     /// <typeparam name="TSource"></typeparam>
     /// <typeparam name="TIntermediate"></typeparam>
     /// <typeparam name="TDestination"></typeparam>
+    [PublicAPI]
     public void CreateChainMap<TSource, TIntermediate, TDestination>()
     {
         CreateMap<TSource, TDestination>()
@@ -35,6 +38,7 @@ public abstract class ProfileBase : Profile
     /// <typeparam name="TSource"></typeparam>
     /// <typeparam name="TIntermediate"></typeparam>
     /// <typeparam name="TDestination"></typeparam>
+    [PublicAPI]
     public void CreateChainMapAndReverse<TSource, TIntermediate, TDestination>()
     {
         CreateChainMap<TSource, TIntermediate, TDestination>();

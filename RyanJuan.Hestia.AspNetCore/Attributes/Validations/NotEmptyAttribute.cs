@@ -1,6 +1,8 @@
-﻿using System.Collections;
+using System.Collections;
 using System.ComponentModel.DataAnnotations;
 using System.Globalization;
+
+using JetBrains.Annotations;
 
 using RyanJuan.Hestia.NonGeneric;
 
@@ -11,6 +13,7 @@ namespace RyanJuan.Hestia.AspNetCore.Attributes.Validations;
 /// The empty value for string is <see cref="string.Empty"/>,
 /// and for enumerable means that there is no item in the enumerable.
 /// </summary>
+[PublicAPI]
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter, AllowMultiple = false)]
 public class NotEmptyAttribute : RequiredAttribute
 {
@@ -21,6 +24,7 @@ public class NotEmptyAttribute : RequiredAttribute
         {
             return false;
         }
+
         return value switch
         {
             string stringValue => stringValue.Length > 0,
@@ -37,6 +41,7 @@ public class NotEmptyAttribute : RequiredAttribute
         {
             errorMessageString = "The value for {0} must not be empty.";
         }
+
         return string.Format(CultureInfo.CurrentCulture, errorMessageString, name);
     }
 }

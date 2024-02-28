@@ -1,4 +1,4 @@
-﻿namespace RyanJuan.Hestia;
+namespace RyanJuan.Hestia;
 
 /// <summary>
 /// 
@@ -15,46 +15,59 @@ public static partial class Hestia
         /// .Net Framework 4.0
         /// </summary>
         NET40,
+
         /// <summary>
         /// .Net Framework 4.5
         /// </summary>
         NET45,
+
         /// <summary>
         /// .Net Framework 4.6.2
         /// </summary>
         NET462,
+
         /// <summary>
         /// .Net Framework 4.8
         /// </summary>
         NET48,
+
         /// <summary>
         /// .Net Standard 2.0
         /// </summary>
         NETSTANDARD2_0,
+
         /// <summary>
         /// .Net Standard 2.1
         /// </summary>
         NETSTANDARD2_1,
+
         /// <summary>
         /// .Net Core 2.2
         /// </summary>
         NETCOREAPP2_2,
+
         /// <summary>
         /// .Net Core 3.1
         /// </summary>
         NETCOREAPP3_1,
+
         /// <summary>
         /// .Net 6.0
         /// </summary>
         NET6_0,
+
+        /// <summary>
+        /// .Net 8.0
+        /// </summary>
+        NET8_0,
         // ReSharper restore InconsistentNaming
     }
 
 #if ZH_HANT
-        /// <summary>
-        /// Hestia 的目標 .NET 平台。
-        /// 如果沒有符合的平台，.NET 將會自己挑選最接近的版本。
-        /// </summary>
+    /// <summary>
+    /// Hestia 的目標 .NET 平台。
+    /// 如果沒有符合的平台，.NET 將會自己挑選最接近的版本。
+    /// </summary>
 #else
     /// <summary>
     /// The targeted .NET runtime of Hestia.
@@ -82,6 +95,8 @@ public static partial class Hestia
             NETCOREAPP3_1
 #elif NET6_0
             NET6_0
+#elif NET8_0
+            NET8_0
 #endif
         ;
 }

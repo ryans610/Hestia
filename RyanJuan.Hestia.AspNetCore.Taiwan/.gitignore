@@ -1,0 +1,6 @@
+# Compiler generate from release config
+lib/
+wwwroot/
+
+# Include content file for package
+!resource/**

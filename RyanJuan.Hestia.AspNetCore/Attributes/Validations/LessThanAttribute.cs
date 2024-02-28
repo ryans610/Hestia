@@ -1,5 +1,7 @@
-﻿using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
+
+using JetBrains.Annotations;
 
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
@@ -8,6 +10,7 @@ namespace RyanJuan.Hestia.AspNetCore.Attributes.Validations;
 /// <summary>
 /// 
 /// </summary>
+[PublicAPI]
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter, AllowMultiple = true)]
 public class LessThanAttribute : CompareValueAttributeBase, IClientModelValidator
 {
@@ -58,7 +61,7 @@ public class LessThanAttribute : CompareValueAttributeBase, IClientModelValidato
     {
         SetupConversion();
 
-        if (value is null || (value as string)?.Length == 0)
+        if (value is null or string { Length: 0 })
         {
             return true;
         }

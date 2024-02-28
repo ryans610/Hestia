@@ -1,8 +1,9 @@
-﻿using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
+
 using System.Text.Encodings.Web;
+
 using Microsoft.AspNetCore.Mvc.TagHelpers;
 
 namespace RyanJuan.Hestia.AspNetCore.TagHelpers;
@@ -10,19 +11,14 @@ namespace RyanJuan.Hestia.AspNetCore.TagHelpers;
 /// <summary>
 /// Display validation message in bootstrap 5 format when a "div" or "span" element has "asp-bootstrap-validation-for" attribute.
 /// </summary>
+/// <inheritdoc cref="BootstrapValidationMessageTagHelper"/>
 [HtmlTargetElement("div", Attributes = ValidationForAttributeName)]
 [HtmlTargetElement("span", Attributes = ValidationForAttributeName)]
-public class BootstrapValidationMessageTagHelper : TagHelper
+public class BootstrapValidationMessageTagHelper(IHtmlGenerator generator) : TagHelper
 {
     private const string DataValidationForAttributeName = "data-valmsg-for";
     private const string DataValidationReplaceAttributeName = "data-valmsg-replace";
     private const string ValidationForAttributeName = "asp-bootstrap-validation-for";
-
-    /// <inheritdoc cref="BootstrapValidationMessageTagHelper"/>
-    public BootstrapValidationMessageTagHelper(IHtmlGenerator generator)
-    {
-        Generator = generator;
-    }
 
     /// <inheritdoc />
     public override int Order => -1000;
@@ -37,7 +33,7 @@ public class BootstrapValidationMessageTagHelper : TagHelper
     /// <summary>
     /// Gets the <see cref="IHtmlGenerator"/> used to generate the <see cref="BootstrapValidationMessageTagHelper"/>'s output.
     /// </summary>
-    protected IHtmlGenerator Generator { get; }
+    protected IHtmlGenerator Generator { get; } = generator;
 
     /// <summary>
     /// Gets an expression to be evaluated against the current model.
@@ -80,6 +76,7 @@ public class BootstrapValidationMessageTagHelper : TagHelper
                 message = tagHelperContent.GetContent();
             }
         }
+
         var tagBuilder = Generator.GenerateValidationMessage(
             ViewContext,
             For.ModelExplorer,

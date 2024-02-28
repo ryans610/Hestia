@@ -1,4 +1,4 @@
-﻿namespace RyanJuan.Hestia;
+namespace RyanJuan.Hestia;
 
 public static partial class HestiaReflection
 {
@@ -32,6 +32,7 @@ public static partial class HestiaReflection
     /// <paramref name="type"/> is <see langword="null"/>.
     /// </exception>
 #endif
+    [PublicAPI]
     public static PropertyInfo[] GetInstanceProperties(
         this Type type)
     {

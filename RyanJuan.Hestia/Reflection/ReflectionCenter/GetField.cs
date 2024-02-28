@@ -1,9 +1,10 @@
-﻿namespace RyanJuan.Hestia;
+namespace RyanJuan.Hestia;
 
 public static partial class ReflectionCenter
 {
     private static readonly ConcurrentDictionary<TypeStringTuple, FieldInfo?> s_cachedFieldInfoByName = new();
 
+    [PublicAPI]
     public static FieldInfo? GetField(
         Type type,
         string name)

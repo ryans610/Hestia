@@ -1,0 +1,9 @@
+<Project>
+  <Target Name="CopyScriptsToProject" BeforeTargets="Build">
+    <Message Text="Copy RyanJuan.Hestia.AspNetCore.Taiwan content files to project" />
+    <ItemGroup>
+      <SourceScriptFiles Include="$(MSBuildThisFileDirectory)..\resource\**\*.*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(SourceScriptFiles)" DestinationFiles="@(SourceScriptFiles -> '$(MSBuildProjectDirectory)\%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" OverwriteReadOnlyFiles="true" />
+  </Target>
+</Project>

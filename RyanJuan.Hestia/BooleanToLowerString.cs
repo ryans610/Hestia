@@ -11,6 +11,7 @@ public static partial class Hestia
     /// <param name="culture"></param>
     /// <returns></returns>
 #endif
+    [PublicAPI]
     public static string ToLowerString(
         this bool value,
         CultureInfo culture)
@@ -26,9 +27,10 @@ public static partial class Hestia
     /// <param name="value"></param>
     /// <returns></returns>
 #endif
+    [PublicAPI]
     public static string ToLowerString(
         this bool value)
     {
-        return value.ToLowerString(CultureInfo.InvariantCulture);
+        return ToLowerString(value, CultureInfo.InvariantCulture);
     }
 }

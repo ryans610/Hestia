@@ -1,4 +1,4 @@
-﻿using System.ComponentModel;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
@@ -86,12 +86,7 @@ public abstract class CompareValueAttributeBase : ValidationAttribute
     {
         if (Conversion == null)
         {
-            object compareValue = CompareValue;
-
-            if (compareValue is null)
-            {
-                throw new InvalidOperationException("RangeAttribute_Must_Set_Min_And_Max");
-            }
+            object compareValue = CompareValue ?? throw new InvalidOperationException("RangeAttribute_Must_Set_Min_And_Max");
 
             // Careful here -- OperandType could be int or double if they used the long form of the ctor.
             // But the compare value would still be strings.  Do use the type of the min/max operands to condition
@@ -112,11 +107,7 @@ public abstract class CompareValueAttributeBase : ValidationAttribute
             }
             else
             {
-                var type = OperandType;
-                if (type == null)
-                {
-                    throw new InvalidOperationException("RangeAttribute_Must_Set_Operand_Type");
-                }
+                var type = OperandType ?? throw new InvalidOperationException("RangeAttribute_Must_Set_Operand_Type");
                 var comparableType = typeof(IComparable);
                 if (!comparableType.IsAssignableFrom(type))
                 {

@@ -1,33 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <package>
-  <metadata>
-    <id>RyanJuan.Hestia.AspNetCore</id>
-    <version>1.0.0-beta10301</version>
-    <description>Hestia.AspNetCore beta test.</description>
-    <authors>RyanJuan</authors>
-    <owners>RyanJuan</owners>
-    <projectUrl>https://github.com/ryans610/Hestia</projectUrl>
-    <license type="expression">MIT</license>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <releaseNotes>Add validation attributes.</releaseNotes>
-    <copyright>Copyright ©2023 RyanJuan</copyright>
-    <language>en</language>
-    <dependencies>
-      <group targetFramework="net6.0">
-        <dependency id="RyanJuan.Hestia" version="1.0.0-beta30716" />
-        <dependency id="AutoMapper" version="11.0.0" />
-      </group>
-    </dependencies>
-    <frameworkReferences>
-      <group targetFramework="net6.0">
-        <frameworkReference name="Microsoft.AspNetCore.App"/>
-      </group>
-    </frameworkReferences>
-  </metadata>
-  <files>
-    <file src="build\**" target="build" />
-    <file src="build\**" target="buildTransitive" />
-    <file src="lib\**" target="lib" />
-    <file src="resource\**" target="resource" />
-  </files>
+    <metadata>
+        <id>RyanJuan.Hestia.AspNetCore</id>
+        <version>$version$</version>
+        <description>Hestia.AspNetCore beta test.</description>
+        <authors>RyanJuan</authors>
+        <owners>RyanJuan</owners>
+        <projectUrl>https://github.com/ryans610/Hestia</projectUrl>
+        <license type="expression">MIT</license>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <releaseNotes>Update package version.</releaseNotes>
+        <copyright>Copyright ©2024 RyanJuan</copyright>
+        <language>en</language>
+        <dependencies>
+            <group targetFramework="net8.0">
+                <dependency id="RyanJuan.Hestia" version="1.0.0-beta40229" />
+                <dependency id="AutoMapper" version="13.0.1" />
+            </group>
+            <group targetFramework="net6.0">
+                <dependency id="RyanJuan.Hestia" version="1.0.0-beta40229" />
+                <dependency id="AutoMapper" version="11.0.1" />
+            </group>
+        </dependencies>
+        <frameworkReferences>
+            <group targetFramework="net8.0">
+                <frameworkReference name="Microsoft.AspNetCore.App" />
+            </group>
+            <group targetFramework="net6.0">
+                <frameworkReference name="Microsoft.AspNetCore.App" />
+            </group>
+        </frameworkReferences>
+    </metadata>
+    <files>
+        <file src="build\**" target="build" />
+        <file src="build\**" target="buildTransitive" />
+        <file src="lib\**" target="lib" />
+        <file src="resource\**" target="resource" />
+    </files>
 </package>

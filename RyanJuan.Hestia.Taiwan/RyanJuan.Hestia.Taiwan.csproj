@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net8.0;net6.0;netcoreapp3.1;netstandard2.1;netstandard2.0;net48;net45;net40</TargetFrameworks>
+    <LangVersion>12.0</LangVersion>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <Version>1.0.0-beta00228</Version>
+    <Authors>RyanJuan</Authors>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <OutputPath>lib</OutputPath>
+    <DocumentationFile>lib\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
+    <GenerateDependencyFile>false</GenerateDependencyFile>
+    <DebugType>embedded</DebugType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+      <_Parameter1>RyanJuan.Hestia.AspNetCore.Taiwan</_Parameter1>
+    </AssemblyAttribute>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="RyanJuan.Hestia" Version="1.0.0-beta40229" />
+  </ItemGroup>
+
+</Project>
