@@ -61,11 +61,13 @@ public static partial class ReflectionCenter
     {
         var instanceParameter = GetObjectParameterExpression("instance");
         var instanceCast = GetCastExpression(instanceParameter, propertyInfo.DeclaringType);
+        var getMethodInfo = propertyInfo.GetGetMethod(nonPublic: true);
+        var getMethod = propertyInfo.IsStatic()
+            ? Expression.Call(getMethodInfo)
+            : Expression.Call(instanceCast, getMethodInfo);
         var lambda = Expression.Lambda<Func<object, object>>(
             Expression.TypeAs(
-                Expression.Call(
-                    instanceCast,
-                    propertyInfo.GetGetMethod(nonPublic: true)),
+                getMethod,
                 typeof(object)),
             instanceParameter);
         return lambda.Compile();
@@ -77,11 +79,12 @@ public static partial class ReflectionCenter
         var valueParameter = GetObjectParameterExpression("value");
         var instanceCast = GetCastExpression(instanceParameter, propertyInfo.DeclaringType);
         var valueCast = GetCastExpression(valueParameter, propertyInfo.PropertyType);
+        var setMethodInfo = propertyInfo.GetSetMethod();
+        var setMethod = propertyInfo.IsStatic()
+            ? Expression.Call(setMethodInfo, valueCast)
+            : Expression.Call(instanceCast, setMethodInfo, valueCast);
         var lambda = Expression.Lambda<Action<object, object>>(
-            Expression.Call(
-                instanceCast,
-                propertyInfo.GetSetMethod(),
-                valueCast),
+            setMethod,
             instanceParameter,
             valueParameter);
         return lambda.Compile();
