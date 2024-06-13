@@ -1,3 +1,5 @@
+using System.Linq.Expressions;
+
 namespace RyanJuan.Hestia;
 
 public static partial class ReflectionCenter
@@ -30,11 +32,13 @@ public static partial class ReflectionCenter
     {
         var instanceParameter = GetObjectParameterExpression(InstanceParameterExpressionName);
         var instanceCast = GetCastExpression(instanceParameter, propertyInfo.DeclaringType!);
+        var getMethodInfo = propertyInfo.GetGetMethod(nonPublic: true);
+        var getMethod = propertyInfo.IsStatic()
+            ? Expression.Call(getMethodInfo)
+            : Expression.Call(instanceCast, getMethodInfo);
         var lambda = Expression.Lambda<Func<object, object?>>(
             Expression.TypeAs(
-                Expression.Call(
-                    instanceCast,
-                    propertyInfo.GetGetMethod(nonPublic: true)!),
+                getMethod,
                 typeof(object)),
             instanceParameter);
         return lambda.Compile();
