@@ -9,61 +9,75 @@ using HestiaReflectionCenter = RyanJuan.Hestia.ReflectionCenter;
 namespace RyanJuan.Hestia.Test.DotNetCore.Reflection.ReflectionCenter
 {
     [TestClass]
-    public class TestGetProperty
+    public class TestSetValue
     {
+        private readonly TestClassA _obj = new TestClassA();
+
         [TestMethod]
-        public void TestGetPropertyForPublicStatic()
+        public void TestSetValueForPublicStatic()
         {
             var type = typeof(TestClassA);
             var prop = HestiaReflectionCenter.GetProperty(
                 type,
                 "PublicStaticProp");
-            Assert.IsNotNull(prop);
-            Assert.AreEqual(prop.Name, "PublicStaticProp");
+            HestiaReflectionCenter.SetValue(
+                prop,
+                null,
+                "Foo");
+            Assert.AreEqual(TestClassA.PublicStaticProp, "Foo");
         }
 
         [TestMethod]
-        public void TestGetPropertyForPrivateStatic()
+        public void TestSetValueForPrivateStatic()
         {
             var type = typeof(TestClassA);
             var prop = HestiaReflectionCenter.GetProperty(
                 type,
                 "PrivateStaticProp");
-            Assert.IsNotNull(prop);
-            Assert.AreEqual(prop.Name, "PrivateStaticProp");
+            HestiaReflectionCenter.SetValue(
+                prop,
+                null,
+                "Foo");
+            Assert.AreEqual(TestClassA.PrivateStaticProp, "Foo");
         }
 
         [TestMethod]
-        public void TestGetPropertyForPublicInstance()
+        public void TestSetValueForPublicInstance()
         {
             var type = typeof(TestClassA);
             var prop = HestiaReflectionCenter.GetProperty(
                 type,
                 "PublicInstanceProp");
-            Assert.IsNotNull(prop);
-            Assert.AreEqual(prop.Name, "PublicInstanceProp");
+            HestiaReflectionCenter.SetValue(
+                prop,
+                _obj,
+                "Foo");
+            Assert.AreEqual(_obj.PublicInstanceProp, "Foo");
         }
 
         [TestMethod]
-        public void TestGetPropertyForPrivateInstance()
+        public void TestSetValueForPrivateInstance()
         {
             var type = typeof(TestClassA);
             var prop = HestiaReflectionCenter.GetProperty(
                 type,
                 "PrivateInstanceProp");
-            Assert.IsNotNull(prop);
-            Assert.AreEqual(prop.Name, "PrivateInstanceProp");
+            HestiaReflectionCenter.SetValue(
+                prop,
+                _obj,
+                "Foo");
+            Assert.AreEqual(_obj.PrivateInstanceProp, "Foo");
         }
 
         private class TestClassA
         {
             public static string PublicStaticProp { get; set; }
 
-            private static string PrivateStaticProp { get; set; }
+            public static string PrivateStaticProp { get; private set; }
 
             public string PublicInstanceProp { get; set; }
 
-            private string PrivateInstanceProp { get; set; }
+            public string PrivateInstanceProp { get; private set; }
         }
     }
 }

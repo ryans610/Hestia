@@ -7,7 +7,7 @@
     <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <!--<Configurations>Debug;Release;Release-zh-Hant</Configurations>-->
-    <Version>1.0.0-beta40230</Version>
+    <Version>1.0.0-beta40303</Version>
     <Authors>RyanJuan</Authors>
   </PropertyGroup>
 

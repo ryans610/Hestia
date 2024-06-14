@@ -58,9 +58,21 @@ public static class DateTimeExtensions
     }
 
     [PublicAPI]
+    public static string ToRocString(this DateTime value, string format)
+    {
+        return value.ToString(format, s_taiwanFormatCulture);
+    }
+
+    [PublicAPI]
+    public static string? ToRocString(this DateTime? value, string format)
+    {
+        return value.HasValue ? ToRocString(value.Value, format) : null;
+    }
+
+    [PublicAPI]
     public static string ToRocDateString(this DateTime value)
     {
-        return value.ToString(HestiaTaiwan.Options.RocDateFormat, s_taiwanFormatCulture);
+        return ToRocString(value, HestiaTaiwan.Options.RocDateFormat);
     }
 
     [PublicAPI]
@@ -72,7 +84,7 @@ public static class DateTimeExtensions
     [PublicAPI]
     public static string ToRocTimeString(this DateTime value)
     {
-        return value.ToString(HestiaTaiwan.Options.RocTimeFormat, s_taiwanFormatCulture);
+        return ToRocString(value, HestiaTaiwan.Options.RocTimeFormat);
     }
 
     [PublicAPI]
@@ -84,7 +96,7 @@ public static class DateTimeExtensions
     [PublicAPI]
     public static string ToRocDateTimeString(this DateTime value)
     {
-        return value.ToString(HestiaTaiwan.Options.RocDateTimeFormat, s_taiwanFormatCulture);
+        return ToRocString(value, HestiaTaiwan.Options.RocDateTimeFormat);
     }
 
     [PublicAPI]

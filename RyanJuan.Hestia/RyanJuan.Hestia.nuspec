@@ -9,7 +9,7 @@
     <projectUrl>https://github.com/ryans610/Hestia</projectUrl>
     <license type="expression">MIT</license>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <releaseNotes>Change GetValueOrDefault to avoid conflict.</releaseNotes>
+    <releaseNotes>Update ReflectionCenter and HestiaString.To</releaseNotes>
     <copyright>Copyright ©2024 RyanJuan</copyright>
     <language>en</language>
     <dependencies>

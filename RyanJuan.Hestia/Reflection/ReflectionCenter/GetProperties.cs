@@ -20,7 +20,7 @@ public static partial class ReflectionCenter
 #endif
         GetProperties<TType>()
     {
-        return PropertiesCache<TType>.Properties;
+        return PropertiesGenericCache<TType>.Properties;
     }
 
     [PublicAPI]
@@ -32,7 +32,7 @@ public static partial class ReflectionCenter
 #endif
         GetAllProperties<TType>()
     {
-        return PropertiesCache<TType>.AllProperties;
+        return PropertiesGenericCache<TType>.AllProperties;
     }
 
     [PublicAPI]
@@ -44,7 +44,7 @@ public static partial class ReflectionCenter
 #endif
         GetInstanceProperties<TType>()
     {
-        return PropertiesCache<TType>.InstanceProperties;
+        return PropertiesGenericCache<TType>.InstanceProperties;
     }
 
     [PublicAPI]
@@ -55,8 +55,9 @@ public static partial class ReflectionCenter
         ReadOnlyCollection<PropertyInfo>
 #endif
         GetProperties(
-        Type type)
+            Type type)
     {
+        Error.ThrowIfArgumentNull(nameof(type), type);
         return GetPropertiesInternal(type);
     }
 
@@ -68,15 +69,15 @@ public static partial class ReflectionCenter
         ReadOnlyCollection<PropertyInfo>
 #endif
         GetProperties(
-        Type type,
-        BindingFlags bindingAttr)
+            Type type,
+            BindingFlags bindingAttr)
     {
         Error.ThrowIfArgumentNull(nameof(type), type);
         return bindingAttr switch
         {
             SystemDefaultBindingAttr => GetProperties(type),
             GetAllBindingAttr => GetAllProperties(type),
-            HestiaReflection.DefaultInstanceBindingAttr => GetInstanceProperties(type),
+            DefaultInstanceBindingAttr => GetInstanceProperties(type),
             _ => GetPropertiesInternal(type, bindingAttr),
         };
     }
@@ -89,8 +90,9 @@ public static partial class ReflectionCenter
         ReadOnlyCollection<PropertyInfo>
 #endif
         GetAllProperties(
-        Type type)
+            Type type)
     {
+        Error.ThrowIfArgumentNull(nameof(type), type);
         return GetPropertiesInternal(
             type,
             GetAllBindingAttr);
@@ -104,11 +106,12 @@ public static partial class ReflectionCenter
         ReadOnlyCollection<PropertyInfo>
 #endif
         GetInstanceProperties(
-        Type type)
+            Type type)
     {
+        Error.ThrowIfArgumentNull(nameof(type), type);
         return GetPropertiesInternal(
             type,
-            HestiaReflection.DefaultInstanceBindingAttr);
+            DefaultInstanceBindingAttr);
     }
 
     private static ReadOnlyCollection<PropertyInfo> GetPropertiesInternal(
@@ -127,20 +130,20 @@ public static partial class ReflectionCenter
         BindingFlags bindingAttr)
     {
         return s_cachedPropertiesByBindingFlags.GetOrAdd(
-            new TypeBindingFlagsTuple(type, bindingAttr),
+            new(type, bindingAttr),
             tuple => tuple
                 .Type
                 .GetProperties(tuple.BindingAttr)
                 .AsReadOnlyCollection());
     }
 
-    private static class PropertiesCache<TType>
+    private static class PropertiesGenericCache<TType>
     {
         public static readonly ReadOnlyCollection<PropertyInfo> Properties =
             GetPropertiesInternal(typeof(TType));
 
         public static readonly ReadOnlyCollection<PropertyInfo> AllProperties =
-            GetPropertiesInternal(typeof(TType), GetAllBindingAttr)
+            GetAllProperties(typeof(TType))
                 .AsReadOnlyCollection();
 
         public static readonly ReadOnlyCollection<PropertyInfo> InstanceProperties =

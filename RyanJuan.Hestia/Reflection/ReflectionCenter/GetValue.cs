@@ -11,7 +11,10 @@ public static partial class ReflectionCenter
     public static object? GetValue(PropertyInfo propertyInfo, object instance)
     {
         Error.ThrowIfArgumentNull(nameof(propertyInfo), propertyInfo);
-        Error.ThrowIfArgumentNull(nameof(instance), instance);
+        if (!propertyInfo.IsStatic())
+        {
+            Error.ThrowIfArgumentNull(nameof(instance), instance);
+        }
 
         if (!propertyInfo.CanRead)
         {
@@ -32,7 +35,7 @@ public static partial class ReflectionCenter
     {
         var instanceParameter = GetObjectParameterExpression(InstanceParameterExpressionName);
         var instanceCast = GetCastExpression(instanceParameter, propertyInfo.DeclaringType!);
-        var getMethodInfo = propertyInfo.GetGetMethod(nonPublic: true);
+        var getMethodInfo = propertyInfo.GetGetMethod(nonPublic: true)!;
         var getMethod = propertyInfo.IsStatic()
             ? Expression.Call(getMethodInfo)
             : Expression.Call(instanceCast, getMethodInfo);

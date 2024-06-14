@@ -21,6 +21,7 @@ public static partial class HestiaEnumerable
 #endif
         out IEnumerable<TElement> result)
     {
+        Error.ThrowIfArgumentNull(nameof(source), source);
         if (source.Contains(key))
         {
             result = source[key];

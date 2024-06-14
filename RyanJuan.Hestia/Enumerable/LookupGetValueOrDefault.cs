@@ -18,6 +18,7 @@ public static partial class HestiaEnumerable
         TKey key,
         IEnumerable<TElement>? defaultValue = default)
     {
+        Error.ThrowIfArgumentNull(nameof(source), source);
         return source.Contains(key) ? source[key] : defaultValue;
     }
 }

@@ -10,33 +10,33 @@
         <projectUrl>https://github.com/ryans610/Hestia</projectUrl>
         <license type="expression">MIT</license>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <releaseNotes>Boolean to mandarin string, datetime to roc string.</releaseNotes>
+        <releaseNotes>Add .ToRocString()</releaseNotes>
         <copyright>Copyright ©2024 RyanJuan</copyright>
         <language>en</language>
         <dependencies>
             <group targetFramework="net8.0">
-                <dependency id="RyanJuan.Hestia" version="1.0.0-beta40229" />
+                <dependency id="RyanJuan.Hestia" version="1.0.0-beta40230" />
             </group>
             <group targetFramework="net6.0">
-                <dependency id="RyanJuan.Hestia" version="1.0.0-beta40229" />
+                <dependency id="RyanJuan.Hestia" version="1.0.0-beta40230" />
             </group>
             <group targetFramework="netcoreapp3.1">
-                <dependency id="RyanJuan.Hestia" version="1.0.0-beta40229" />
+                <dependency id="RyanJuan.Hestia" version="1.0.0-beta40230" />
             </group>
             <group targetFramework="netstandard2.1">
-                <dependency id="RyanJuan.Hestia" version="1.0.0-beta40229" />
+                <dependency id="RyanJuan.Hestia" version="1.0.0-beta40230" />
             </group>
             <group targetFramework="netstandard2.0">
-                <dependency id="RyanJuan.Hestia" version="1.0.0-beta40229" />
+                <dependency id="RyanJuan.Hestia" version="1.0.0-beta40230" />
             </group>
             <group targetFramework="net48">
-                <dependency id="RyanJuan.Hestia" version="1.0.0-beta40229" />
+                <dependency id="RyanJuan.Hestia" version="1.0.0-beta40230" />
             </group>
             <group targetFramework="net45">
-                <dependency id="RyanJuan.Hestia" version="1.0.0-beta40229" />
+                <dependency id="RyanJuan.Hestia" version="1.0.0-beta40230" />
             </group>
             <group targetFramework="net40">
-                <dependency id="RyanJuan.Hestia" version="1.0.0-beta40229" />
+                <dependency id="RyanJuan.Hestia" version="1.0.0-beta40230" />
             </group>
         </dependencies>
     </metadata>

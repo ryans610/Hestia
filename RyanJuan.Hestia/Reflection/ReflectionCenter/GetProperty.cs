@@ -1,8 +1,29 @@
+#if NET8_0_OR_GREATER
+using System.Collections.Frozen;
+#endif
+
 namespace RyanJuan.Hestia;
 
 public static partial class ReflectionCenter
 {
-    private static readonly ConcurrentDictionary<TypeStringTuple, PropertyInfo?> s_cachedPropertyInfoByName = new();
+    private static readonly ConcurrentDictionary<
+        Type,
+#if !NET40
+        IReadOnlyDictionary<string, PropertyInfo>
+#else
+        IDictionary<string, PropertyInfo>
+#endif
+    > s_cachedPropertyInfosByType = new();
+
+    [PublicAPI]
+    public static PropertyInfo? GetProperty<TType>(
+        string name)
+    {
+        Error.ThrowIfArgumentNull(nameof(name), name);
+        var propertyInfos = PropertyGenericCache<TType>.PropertyInfos;
+        // ReSharper disable once CanSimplifyDictionaryTryGetValueWithGetValueOrDefault
+        return propertyInfos.TryGetValue(name, out var result) ? result : null;
+    }
 
     [PublicAPI]
     public static PropertyInfo? GetProperty(
@@ -18,21 +39,37 @@ public static partial class ReflectionCenter
                 $"{nameof(name)} can not be empty.");
         }
 
-        if (s_cachedPropertyInfoByName.TryGetValue(
-                new TypeStringTuple(type, name),
-                out var value))
-        {
-            return value;
-        }
-
-        var property = type.GetProperty(name, GetAllBindingAttr);
-        s_cachedPropertyInfoByName.TryAdd(
-            new TypeStringTuple(type, name),
-            property);
-        return property;
+        var propertyInfos = s_cachedPropertyInfosByType.GetOrAdd(
+            type,
+            key => GetPropertiesForType(type));
+        // ReSharper disable once CanSimplifyDictionaryTryGetValueWithGetValueOrDefault
+        return propertyInfos.TryGetValue(name, out var result) ? result : null;
     }
 
-    private static PropertyInfo GetMostMatchProperty(
+    private static
+#if !NET40
+        IReadOnlyDictionary<string, PropertyInfo>
+#else
+        IDictionary<string, PropertyInfo>
+#endif
+        GetPropertiesForType(Type type)
+    {
+        return GetPropertiesInternal(type, GetAllBindingAttr)
+                .GroupBy(x => x.Name)
+                .Select(x => new NamePropertyTuple(x.Key, GetMostMatchProperty(x, type)))
+                .Where(x => x.PropertyInfo is not null)
+#if NET8_0_OR_GREATER
+                .ToFrozenDictionary(x => x.Name, x => x.PropertyInfo!)
+#else
+                .ToDictionary(x => x.Name, x => x.PropertyInfo!)
+#if !NET40
+                .AsReadOnly()
+#endif
+#endif
+            ;
+    }
+
+    private static PropertyInfo? GetMostMatchProperty(
         IEnumerable<PropertyInfo> properties,
         Type type)
     {
@@ -59,18 +96,36 @@ public static partial class ReflectionCenter
         }
 
         var declareType = type;
-        PropertyInfo declaringTypeMatched = null;
         do
         {
-            declaringTypeMatched = list.FirstOrDefault(x => x.DeclaringType == type);
+            var declaringTypeMatched = list.FirstOrDefault(x => x.DeclaringType == type);
             if (declaringTypeMatched is not null)
             {
                 return declaringTypeMatched;
             }
 
             declareType = declareType.BaseType;
-        } while (declareType != typeof(object));
+        } while (declareType is not null && declareType != typeof(object));
 
         return list[0];
+    }
+
+    private static class PropertyGenericCache<TType>
+    {
+        public static readonly
+#if !NET40
+            IReadOnlyDictionary<string, PropertyInfo>
+#else
+            IDictionary<string, PropertyInfo>
+#endif
+            PropertyInfos = GetPropertiesForType(typeof(TType));
+    }
+
+    private readonly struct NamePropertyTuple(
+        string name,
+        PropertyInfo? propertyInfo)
+    {
+        public string Name { get; } = name;
+        public PropertyInfo? PropertyInfo { get; } = propertyInfo;
     }
 }

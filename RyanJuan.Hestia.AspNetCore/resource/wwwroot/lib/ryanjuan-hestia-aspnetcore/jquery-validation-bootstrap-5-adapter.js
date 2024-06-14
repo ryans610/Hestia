@@ -26,7 +26,9 @@ document.addEventListener("DOMContentLoaded", function () {
         window.jQuery(".input-validation-error").each((i, element) => {
             highlightInvalid(element);
         });
-        window.jQuery(".input-group:has(.field-validation-valid), .input-group:has(.field-validation-error)").addClass("has-validation");
+        window
+            .jQuery(".input-group:has(.field-validation-valid), .input-group:has(.field-validation-error)")
+            .addClass("has-validation");
     }
 
     function highlightInvalid(element) {

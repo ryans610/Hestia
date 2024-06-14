@@ -9,14 +9,12 @@ using HestiaReflectionCenter = RyanJuan.Hestia.ReflectionCenter;
 namespace RyanJuan.Hestia.Test.DotNetCore.Reflection.ReflectionCenter
 {
     [TestClass]
-    public class TestGetProperty
+    public class TestGetPropertyGeneric
     {
         [TestMethod]
         public void TestGetPropertyForPublicStatic()
         {
-            var type = typeof(TestClassA);
-            var prop = HestiaReflectionCenter.GetProperty(
-                type,
+            var prop = HestiaReflectionCenter.GetProperty<TestClassA>(
                 "PublicStaticProp");
             Assert.IsNotNull(prop);
             Assert.AreEqual(prop.Name, "PublicStaticProp");
@@ -25,9 +23,7 @@ namespace RyanJuan.Hestia.Test.DotNetCore.Reflection.ReflectionCenter
         [TestMethod]
         public void TestGetPropertyForPrivateStatic()
         {
-            var type = typeof(TestClassA);
-            var prop = HestiaReflectionCenter.GetProperty(
-                type,
+            var prop = HestiaReflectionCenter.GetProperty<TestClassA>(
                 "PrivateStaticProp");
             Assert.IsNotNull(prop);
             Assert.AreEqual(prop.Name, "PrivateStaticProp");
@@ -36,9 +32,7 @@ namespace RyanJuan.Hestia.Test.DotNetCore.Reflection.ReflectionCenter
         [TestMethod]
         public void TestGetPropertyForPublicInstance()
         {
-            var type = typeof(TestClassA);
-            var prop = HestiaReflectionCenter.GetProperty(
-                type,
+            var prop = HestiaReflectionCenter.GetProperty<TestClassA>(
                 "PublicInstanceProp");
             Assert.IsNotNull(prop);
             Assert.AreEqual(prop.Name, "PublicInstanceProp");
@@ -47,9 +41,7 @@ namespace RyanJuan.Hestia.Test.DotNetCore.Reflection.ReflectionCenter
         [TestMethod]
         public void TestGetPropertyForPrivateInstance()
         {
-            var type = typeof(TestClassA);
-            var prop = HestiaReflectionCenter.GetProperty(
-                type,
+            var prop = HestiaReflectionCenter.GetProperty<TestClassA>(
                 "PrivateInstanceProp");
             Assert.IsNotNull(prop);
             Assert.AreEqual(prop.Name, "PrivateInstanceProp");

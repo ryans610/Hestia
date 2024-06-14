@@ -56,7 +56,7 @@ public static class ServiceCollectionExtensions
                         return provider.GetRequiredService(parameterType);
                     })
                     .ToArray();
-                var instance = Activator.CreateInstance(type, parameters);
+                var instance = Activator.CreateInstance(type, parameters)!;
                 return instance;
             });
         }
