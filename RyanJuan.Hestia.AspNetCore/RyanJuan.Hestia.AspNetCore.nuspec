@@ -10,16 +10,16 @@
         <projectUrl>https://github.com/ryans610/Hestia</projectUrl>
         <license type="expression">MIT</license>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <releaseNotes>Update package version.</releaseNotes>
+        <releaseNotes>Add SelectListItemsBuilder.</releaseNotes>
         <copyright>Copyright ©2024 RyanJuan</copyright>
         <language>en</language>
         <dependencies>
             <group targetFramework="net8.0">
-                <dependency id="RyanJuan.Hestia" version="1.0.0-beta40229" />
+                <dependency id="RyanJuan.Hestia" version="1.0.0-beta40618" />
                 <dependency id="AutoMapper" version="13.0.1" />
             </group>
             <group targetFramework="net6.0">
-                <dependency id="RyanJuan.Hestia" version="1.0.0-beta40229" />
+                <dependency id="RyanJuan.Hestia" version="1.0.0-beta40618" />
                 <dependency id="AutoMapper" version="11.0.1" />
             </group>
         </dependencies>

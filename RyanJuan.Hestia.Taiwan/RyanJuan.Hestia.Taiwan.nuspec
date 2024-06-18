@@ -15,28 +15,28 @@
         <language>en</language>
         <dependencies>
             <group targetFramework="net8.0">
-                <dependency id="RyanJuan.Hestia" version="1.0.0-beta40230" />
+                <dependency id="RyanJuan.Hestia" version="1.0.0-beta40618" />
             </group>
             <group targetFramework="net6.0">
-                <dependency id="RyanJuan.Hestia" version="1.0.0-beta40230" />
+                <dependency id="RyanJuan.Hestia" version="1.0.0-beta40618" />
             </group>
             <group targetFramework="netcoreapp3.1">
-                <dependency id="RyanJuan.Hestia" version="1.0.0-beta40230" />
+                <dependency id="RyanJuan.Hestia" version="1.0.0-beta40618" />
             </group>
             <group targetFramework="netstandard2.1">
-                <dependency id="RyanJuan.Hestia" version="1.0.0-beta40230" />
+                <dependency id="RyanJuan.Hestia" version="1.0.0-beta40618" />
             </group>
             <group targetFramework="netstandard2.0">
-                <dependency id="RyanJuan.Hestia" version="1.0.0-beta40230" />
+                <dependency id="RyanJuan.Hestia" version="1.0.0-beta40618" />
             </group>
             <group targetFramework="net48">
-                <dependency id="RyanJuan.Hestia" version="1.0.0-beta40230" />
+                <dependency id="RyanJuan.Hestia" version="1.0.0-beta40618" />
             </group>
             <group targetFramework="net45">
-                <dependency id="RyanJuan.Hestia" version="1.0.0-beta40230" />
+                <dependency id="RyanJuan.Hestia" version="1.0.0-beta40618" />
             </group>
             <group targetFramework="net40">
-                <dependency id="RyanJuan.Hestia" version="1.0.0-beta40230" />
+                <dependency id="RyanJuan.Hestia" version="1.0.0-beta40618" />
             </group>
         </dependencies>
     </metadata>
